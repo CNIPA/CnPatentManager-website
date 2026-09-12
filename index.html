@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" data-accent="blue">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中国专利管理大师 · 本地化专利资产管理软件</title>
+<meta name="description" content="中国专利管理大师（CnPatentManager）是一款面向代理机构与企业的 Windows 桌面软件：专利台账、通知书智能识别、年费与期限管理、收据与订单对账、权利人与代理机构管理，数据全部存放在本机。">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="assets/img/logo.ico">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/theme-init.js"></script>
+<script src="assets/js/main.js" defer></script>
+</head>
+<body>
+
+<!-- ============================ 公告条 ============================ -->
+<div class="notice-bar">
+  <span class="pill pill-soft"><span class="dot"></span>v1.0.0</span>
+  <span><strong>内置 2024-01-20 施行的期限新规</strong>：电子送达自发文日起算，名义届满日遇非工作日顺延。</span>
+  <a class="link-arrow" href="guide.html#deadline">了解规则
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</div>
+
+<!-- ============================ 导航 ============================ -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logo-mark.png" alt="中国专利管理大师">
+      <span>中国专利管理大师</span>
+      <span class="brand-sub">CnPatentManager</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">首页</a>
+      <a href="features.html">功能</a>
+      <a href="guide.html">使用指南</a>
+      <a href="download.html">下载</a>
+    </nav>
+    <div class="nav-right">
+      <a class="btn btn-primary btn-sm" href="download.html">下载</a>
+      <button class="icon-btn nav-toggle" id="navToggle" aria-label="展开菜单">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================ Hero ============================ -->
+  <section class="hero">
+    <div class="container">
+      <img class="hero-mark" src="assets/img/logo-mark.png" alt="">
+      <h1 class="hero-title">专利资产管理<br>回归清晰</h1>
+      <p class="hero-sub">
+        面向专利代理机构与企业的 Windows 桌面软件。台账、通知书识别、年费与期限、
+        收据与订单对账、权利人与代理机构，全部收在一处 —— 数据存放在本机数据库，不上云。
+      </p>
+      <div class="btn-row center hero-actions">
+        <a class="btn btn-primary btn-lg" href="download.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
+          下载安装包
+        </a>
+        <a class="btn btn-ghost btn-lg" href="features.html">查看功能</a>
+      </div>
+      <p class="hero-note">Windows 10 / 11（x64） · 本机部署 · 数据不上云</p>
+
+      <div class="stat-strip reveal">
+        <div>
+          <div class="stat-num">识别</div>
+          <div class="stat-label">通知书与证书自动提取字段<br>申请号 · 发文日 · 费用明细</div>
+        </div>
+        <div>
+          <div class="stat-num">12 个月</div>
+          <div class="stat-label">应缴年费按期分组<br>本月 · 本年度 · 未来一年</div>
+        </div>
+        <div>
+          <div class="stat-num">顺延</div>
+          <div class="stat-label">届满日遇非工作日自动顺延<br>节假日与调休已内置</div>
+        </div>
+        <div>
+          <div class="stat-num">本地</div>
+          <div class="stat-label">数据不出本机<br>不依赖云端与服务器</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 核心能力 ============================ -->
+  <section class="section section-soft" id="capabilities">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">核心能力</div>
+        <h2>从一份通知书，到一整年的缴费计划</h2>
+        <p>专利管理的麻烦不在数据本身，而在数据散落在 PDF、Excel 和邮件里。软件把这些环节串成一条链路：
+           文书进来，字段落库，期限自动算出来，缴费与收据自动对上。</p>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="card card-hover reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
+          </div>
+          <h3>专利台账</h3>
+          <p>申请号、申请日、公开日、公告日、案件状态、IPC 分类号、摘要、优先权、PCT 与分案记录 ——
+             一件专利的著录信息集中呈现，可按权利人、状态分类、申请年份、授权年份层层下钻。</p>
+        </article>
+
+        <article class="card card-hover reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>
+          </div>
+          <h3>文书智能识别</h3>
+          <p>拖入通知书、证书或公开公告 PDF，自动提取申请号、发文日、发文序号、费用明细等字段；
+             支持 CPC 卷（整卷压缩包）批量导入，重复文书自动去重。</p>
+        </article>
+
+        <article class="card card-hover reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          </div>
+          <h3>年费与期限</h3>
+          <p>应缴年费按本月 / 本年度 / 未来 1、3、6、12 个月分组；期限引擎按 2024-01-20 起施行的
+             《专利法实施细则》计算，名义届满日遇非工作日自动顺延至其后第一个工作日。</p>
+        </article>
+
+        <article class="card card-hover reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14v18l-7-4-7 4z"/><path d="M9 8h6M9 12h6"/></svg>
+          </div>
+          <h3>收据与订单对账</h3>
+          <p>缴费订单、收据与收据明细三者互相核对，自动列出「缺少收据的缴费记录」；
+             收据落库后按规则回写专利案件状态，逾期日期同步清除或标注。</p>
+        </article>
+
+        <article class="card card-hover reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>
+          </div>
+          <h3>权利人与代理机构</h3>
+          <p>权利人名录与联系人、发明（设计）人、身份证号统一维护；代理机构与代理师按「变更次序」
+             保存快照，机构更换时代理师集合随快照复制，历史每一次变更都可追溯。</p>
+        </article>
+
+        <article class="card card-hover reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+          </div>
+          <h3>统计与导出</h3>
+          <p>仪表板汇总专利总量、应缴年费、本月到期与逾期未缴，附年费支出趋势与未来到期分布；
+             按权利人、按案件状态（发明 / 实用新型 / 外观设计）统计，表格数据可导出 Excel。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 界面示意 ============================ -->
+  <section class="section" id="screens">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">界面</div>
+        <h2>一屏之内，看清全局</h2>
+        <p>左侧是随数据自动生长的导航树，右侧是可直接编辑的数据网格。表格采用 Access 数据表视图的交互习惯：
+           单击选中、双击编辑、右键菜单、列宽与排序可保存。</p>
+      </div>
+
+      <div class="stack-24">
+        <!-- 仪表板 -->
+        <div class="win reveal">
+          <div class="win-bar">
+            <span class="win-dot"></span><span class="win-dot"></span><span class="win-dot"></span>
+            <span class="win-title">中国专利管理大师 — 📊 仪表板</span>
+            <span class="win-badge">本机数据库</span>
+          </div>
+          <div class="win-body">
+            <aside class="win-side">
+              <div class="side-brand"><img src="assets/img/logo-mark.png" alt="">中国专利管理大师</div>
+              <ul class="win-tree">
+                <li class="is-active"><span class="em">📊</span>仪表板</li>
+                <li><span class="em">📄</span>专利<span class="count">1284</span></li>
+                <li class="indent-1"><span class="em">📊</span>统计</li>
+                <li class="indent-1">当前有效<span class="count">962</span></li>
+                <li><span class="em">📨</span>通知书<span class="count">3451</span></li>
+                <li><span class="em">🏛</span>代理机构/代理师</li>
+                <li><span class="em">📅</span>缴费年度</li>
+                <li><span class="em">💰</span>应缴年费<span class="count">96</span></li>
+                <li><span class="em">🧾</span>收据</li>
+                <li><span class="em">⚠️</span>缺少收据的缴费记录<span class="count">7</span></li>
+              </ul>
+            </aside>
+            <div class="win-main">
+              <div class="win-head">
+                <h4>仪表板</h4>
+                <span class="pill pill-ok tiny grow"><span class="dot"></span>数据库已连接</span>
+              </div>
+              <div class="kpi-row">
+                <div class="kpi">
+                  <div class="kpi-label">📊 总专利数</div>
+                  <div class="kpi-value">1,284</div>
+                  <div class="kpi-foot">管理中的专利</div>
+                </div>
+                <div class="kpi is-warn">
+                  <div class="kpi-label">💰 应缴年费</div>
+                  <div class="kpi-value">96</div>
+                  <div class="kpi-foot">待缴费专利</div>
+                </div>
+                <div class="kpi is-accent">
+                  <div class="kpi-label">⏰ 本月到期</div>
+                  <div class="kpi-value">14</div>
+                  <div class="kpi-foot">需要关注</div>
+                </div>
+                <div class="kpi is-danger">
+                  <div class="kpi-label">⚠️ 逾期未缴</div>
+                  <div class="kpi-value">3</div>
+                  <div class="kpi-foot">需要立即处理</div>
+                </div>
+              </div>
+
+              <div class="grid grid-2" style="margin-top:14px;">
+                <div class="card card-flat" style="padding:14px;">
+                  <div class="tiny dim">📈 年费支出趋势</div>
+                  <div class="bars" aria-hidden="true">
+                    <span style="height:38%"></span><span style="height:52%"></span><span style="height:44%"></span>
+                    <span style="height:66%"></span><span style="height:58%"></span><span style="height:74%"></span>
+                    <span style="height:61%"></span><span style="height:83%"></span><span style="height:69%"></span>
+                    <span style="height:90%" class="is-peak"></span><span style="height:76%"></span><span style="height:94%" class="is-peak"></span>
+                  </div>
+                </div>
+                <div class="card card-flat" style="padding:14px;">
+                  <div class="tiny dim">📅 未来到期专利分布</div>
+                  <div class="bars" aria-hidden="true">
+                    <span style="height:30%"></span><span style="height:48%"></span><span style="height:72%" class="is-peak"></span>
+                    <span style="height:56%"></span><span style="height:41%"></span><span style="height:35%"></span>
+                    <span style="height:24%"></span><span style="height:18%"></span><span style="height:12%"></span>
+                    <span style="height:9%"></span><span style="height:6%"></span><span style="height:4%"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-2">
+          <!-- 专利列表 -->
+          <div class="win reveal">
+            <div class="win-bar">
+              <span class="win-dot"></span><span class="win-dot"></span><span class="win-dot"></span>
+              <span class="win-title">📄 专利 · 权利人 · 当前有效</span>
+            </div>
+            <div class="win-main">
+              <div class="win-head">
+                <h4>专利清单</h4>
+                <span class="tiny dim grow">共 962 条</span>
+                <span class="pill tiny">📤 导出 Excel</span>
+              </div>
+              <table class="mini-table">
+                <thead>
+                  <tr><th>申请号</th><th>名称</th><th>申请日</th><th>案件状态</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td class="strong mono">202310158842.6</td><td>一种电机定子绕线装置</td><td>2023-02-21</td><td><span class="tag tag-ok">专利权维持</span></td></tr>
+                  <tr><td class="strong mono">202210664931.X</td><td>锂电隔膜涂布工艺</td><td>2022-06-11</td><td><span class="tag tag-ok">专利权维持</span></td></tr>
+                  <tr><td class="strong mono">202110338274.5</td><td>一种视觉分拣控制方法</td><td>2021-03-30</td><td><span class="tag tag-warn">等待实审提案</span></td></tr>
+                  <tr><td class="strong mono">202011472155.8</td><td>高精度减速器装配工装</td><td>2020-12-14</td><td><span class="tag">等待颁证公告</span></td></tr>
+                  <tr><td class="strong mono">201910882317.2</td><td>注塑模具冷却水路结构</td><td>2019-09-18</td><td><span class="tag tag-danger">专利权终止</span></td></tr>
+                </tbody>
+              </table>
+              <div class="win-toast">
+                <span class="em">✓</span>排序与列宽已保存 · 支持右键菜单、行内编辑与批量导出
+              </div>
+            </div>
+          </div>
+
+          <!-- 费用明细 / 缺口预警 -->
+          <div class="win reveal">
+            <div class="win-bar">
+              <span class="win-dot"></span><span class="win-dot"></span><span class="win-dot"></span>
+              <span class="win-title">📨 通知书 · 费用明细</span>
+            </div>
+            <div class="win-main">
+              <div class="win-head">
+                <h4>费用明细（含缺口预警）</h4>
+                <span class="tiny dim grow">缺口 1 · 未缴 2 · 跳过 1</span>
+              </div>
+              <table class="mini-table">
+                <thead>
+                  <tr><th>申请号</th><th>费用名称</th><th>金额</th><th>状态</th></tr>
+                </thead>
+                <tbody>
+                  <tr class="row-flag-danger"><td class="strong mono">202110338274.5</td><td>恢复权利请求费</td><td>¥1,000</td><td><span class="tag tag-danger">缺少</span></td></tr>
+                  <tr class="row-flag-warn"><td class="strong mono">202210664931.X</td><td>第 3 年年费</td><td>¥900</td><td><span class="tag tag-warn">未缴</span></td></tr>
+                  <tr class="row-flag-warn"><td class="strong mono">202011472155.8</td><td>办理登记手续费</td><td>¥205</td><td><span class="tag tag-warn">未缴</span></td></tr>
+                  <tr><td class="strong mono">202310158842.6</td><td>第 2 年年费</td><td>¥900</td><td><span class="tag tag-ok">已缴</span></td></tr>
+                  <tr class="row-flag-skip"><td class="strong mono">201910882317.2</td><td>恢复权利请求费</td><td>¥1,000</td><td><span class="tag">跳过</span></td></tr>
+                </tbody>
+              </table>
+              <div class="win-toast">
+                <span class="em">!</span>含「缺少」状态的行标红、未缴浅黄，汇总显示在工具栏
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="tiny dim reveal" style="margin-top:18px;">
+        以上为按软件实际布局绘制的界面示意（非屏幕截图），其中的申请号与数据均为示例。
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================ 期限规则 ============================ -->
+  <section class="section section-soft" id="deadline">
+    <div class="container">
+      <div class="grid grid-1-2" style="align-items:start;gap:56px;">
+        <div class="reveal">
+          <div class="eyebrow">期限引擎</div>
+          <h2 style="font-size:clamp(24px,3vw,34px);letter-spacing:-0.03em;">算得对，比算得快更重要</h2>
+          <p class="lead" style="margin-top:20px;">
+            期限算错一次，代价可能是一件专利。软件内置的期限引擎对齐修改后《专利法实施细则》
+            （国务院令第 769 号，2024-01-20 施行），并把历史通知书的旧规则一并保留。
+          </p>
+          <p class="muted" style="margin-top:18px;font-size:15px;">
+            按通知书类型自动匹配期间：第一次审查意见通知书 4 个月、第二次及以后 2 个月、
+            驳回决定 3 个月（复审请求）、复审决定书 3 个月（起诉）、办理登记手续 2 个月。
+          </p>
+          <div class="btn-row" style="margin-top:28px;">
+            <a class="btn btn-ghost" href="features.html#deadline">查看期限规则详解</a>
+          </div>
+        </div>
+
+        <div class="card card-lg reveal">
+          <div class="card-index">期限计算规则</div>
+          <ul class="check-list" style="margin-top:20px;">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span><strong>电子送达</strong>：2024-01-20 及以后发文的通知书，期限<strong>自发文日</strong>起算，不再适用「发文日 + 15 日推定收到」。</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span><strong>历史通知书</strong>：发文日早于 2024-01-20 的，先按旧规则加 15 日推定收到，再计算期间，避免回溯改算。</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span><strong>工作日顺延</strong>：名义届满日不是中国工作日时，顺延至其后第一个工作日。</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span><strong>节假日数据</strong>：按年下载并缓存法定节假日与调休安排；离线时退回「仅按周末」判断，并在界面提示。</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span><strong>统一入口</strong>：通知书、CPC 导入、专利录入等所有入口共用同一套计算逻辑，不存在两套算法。</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 工作流 ============================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center reveal">
+        <div class="eyebrow">工作流</div>
+        <h2>四步，把文书变成可管理的数据</h2>
+      </div>
+      <ol class="steps steps-4 reveal">
+        <li>
+          <div class="step-num">STEP 01</div>
+          <h3>导入</h3>
+          <p>拖入通知书 / 证书 / 公开公告 PDF 或 CPC 压缩包；也可从 Access 历史库一次性迁移。</p>
+        </li>
+        <li>
+          <div class="step-num">STEP 02</div>
+          <h3>识别</h3>
+          <p>按文书类型分流提取字段：申请号、发文日、发文序号、费用明细、代理机构与代理师。</p>
+        </li>
+        <li>
+          <div class="step-num">STEP 03</div>
+          <h3>确认</h3>
+          <p>预览窗口逐字段核对，缺失申请号可自动建立最小专利记录，重复文书自动跳过。</p>
+        </li>
+        <li>
+          <div class="step-num">STEP 04</div>
+          <h3>联动</h3>
+          <p>入库后联动案件状态、失效日、逾期日期与应缴年费，并在仪表板与预警列表中体现。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================ 数据与安全 ============================ -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="grid grid-2-1" style="gap:56px;align-items:start;">
+        <div class="reveal">
+          <div class="eyebrow">数据</div>
+          <h2 style="font-size:clamp(24px,3vw,34px);letter-spacing:-0.03em;">数据在你自己的机器上</h2>
+          <p class="lead" style="margin-top:20px;">
+            专利数据属于客户机密。软件把全部数据保存在本机，不需要也不依赖任何云端服务与服务器。
+          </p>
+          <div class="grid grid-2" style="margin-top:34px;">
+            <div>
+              <h3 style="font-size:16px;">💾 一键备份与恢复</h3>
+              <p class="muted small" style="margin-top:10px;">在软件内一键生成整库备份；需要时从备份文件恢复，恢复前先展示备份内容。</p>
+            </div>
+            <div>
+              <h3 style="font-size:16px;">📦 数据可移交</h3>
+              <p class="muted small" style="margin-top:10px;">把数据库文件交给同事接续使用，双击指针文件即可打开对应数据库。</p>
+            </div>
+            <div>
+              <h3 style="font-size:16px;">🔄 旧库自动升级</h3>
+              <p class="muted small" style="margin-top:10px;">升级到新版本后打开旧数据库，缺失的内容会自动补齐，不需要手工改表。</p>
+            </div>
+            <div>
+              <h3 style="font-size:16px;">🧰 历史数据迁移</h3>
+              <p class="muted small" style="margin-top:10px;">随附的数据迁移工具可从旧版 Access 库增量导入历史数据，只增不改，便于反复校验。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-lg card-flat reveal">
+          <div class="card-index">数据存放</div>
+          <div class="kv" style="margin-top:20px;">
+            <div>
+              <dt>存放位置</dt>
+              <dd class="tiny">本机数据库文件，不上传</dd>
+            </div>
+            <div>
+              <dt>运行环境</dt>
+              <dd class="tiny">Windows 10 / 11（x64）</dd>
+            </div>
+            <div>
+              <dt>备份形式</dt>
+              <dd class="tiny">单个备份文件，可随移动存储带走</dd>
+            </div>
+            <div>
+              <dt>移交方式</dt>
+              <dd class="tiny">数据库文件 + 指针文件，双击指针文件打开</dd>
+            </div>
+            <div>
+              <dt>联网行为</dt>
+              <dd class="tiny">仅按需下载节假日日历与安装前置组件，业务数据不上传</dd>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 快速上手 ============================ -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-head center reveal">
+        <div class="eyebrow">快速上手</div>
+        <h2>三步建起你的专利台账</h2>
+      </div>
+      <ol class="steps steps-3 reveal">
+        <li>
+          <div class="step-num">01</div>
+          <h3>准备环境</h3>
+          <p>运行安装包，向导会自动检测本机缺少的运行环境，并给出下载与安装入口。</p>
+        </li>
+        <li>
+          <div class="step-num">02</div>
+          <h3>安装并启动</h3>
+          <p>按向导完成安装，从开始菜单或桌面快捷方式启动程序。</p>
+        </li>
+        <li>
+          <div class="step-num">03</div>
+          <h3>建库并导入</h3>
+          <p>首次启动新建数据库或打开已有数据库文件，然后导入通知书、CPC 卷或历史数据。</p>
+        </li>
+      </ol>
+      <div class="btn-row center reveal" style="margin-top:36px;">
+        <a class="btn btn-ghost" href="guide.html">阅读完整使用指南</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ FAQ ============================ -->
+  <section class="section">
+    <div class="container container-narrow">
+      <div class="section-head reveal">
+        <div class="eyebrow">常见问题</div>
+        <h2>你可能想先知道的几件事</h2>
+      </div>
+      <div class="faq reveal">
+        <details>
+          <summary>数据会联网上传吗？</summary>
+          <div class="faq-body">
+            <p>不会。所有业务数据保存在本机数据库文件中。软件仅在需要时联网读取法定节假日与调休数据（按年缓存，可离线），
+               安装向导在缺少前置组件时提供官方下载链接。</p>
+          </div>
+        </details>
+        <details>
+          <summary>可以多人同时使用吗？</summary>
+          <div class="faq-body">
+            <p>软件定位是单机使用：数据以一个本机数据库文件的形式存在，可以连同指针文件交给同事接续使用，
+               属于文件级交接，并不提供多用户并发协作。</p>
+          </div>
+        </details>
+        <details>
+          <summary>扫描件 PDF 能识别吗？</summary>
+          <div class="faq-body">
+            <p>2020—2022 年间的部分通知书 PDF 没有文字层（本质是扫描图片），任何纯文本提取都无法读取。
+               软件不会静默失败，而是明确区分「无文字层（扫描件）」「缺少文本提取组件」「解析失败」三种原因并逐一提示，
+               这类文书需要手工补录。</p>
+          </div>
+        </details>
+        <details>
+          <summary>支持哪些文书格式？</summary>
+          <div class="faq-body">
+            <p>国家知识产权局通知书与证书、公开公告文本（用于更新公开号 / 公告号与状态）、CPC 卷（整卷压缩包）、
+               缴费订单与收据。重复的通知书会自动跳过，不会重复入库。</p>
+          </div>
+        </details>
+        <details>
+          <summary>原来的 Access 数据怎么办？</summary>
+          <div class="faq-body">
+            <p>随附的数据迁移工具可以只读方式读取旧版 Access 数据库，把专利著录项、费用、权利人、
+               代理机构与代理师等历史数据增量导入 —— 只增不改，便于反复校验。</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CTA ============================ -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="cta reveal">
+        <h2>现在就把台账搬到一处</h2>
+        <p>下载安装包开始使用，或先读一遍使用指南。历史 Access 数据可以一次性迁移过来。</p>
+        <div class="btn-row center">
+          <a class="btn btn-primary btn-lg" href="download.html">前往下载</a>
+          <a class="btn btn-ghost btn-lg" href="guide.html">查看使用指南</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================ 页脚 ============================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="index.html">
+          <img src="assets/img/logo-mark.png" alt="">
+          <span>中国专利管理大师</span>
+        </a>
+        <p class="footer-note">本地化专利资产管理软件。台账、通知书、年费期限、收据订单与代理人信息，都在一台机器上说清楚。</p>
+      </div>
+      <div>
+        <h4>产品</h4>
+        <ul>
+          <li><a href="features.html">功能总览</a></li>
+          <li><a href="features.html#patents">专利台账</a></li>
+          <li><a href="features.html#documents">文书识别</a></li>
+          <li><a href="features.html#deadline">年费与期限</a></li>
+          <li><a href="features.html#statistics">统计与导出</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>文档</h4>
+        <ul>
+          <li><a href="guide.html">使用指南</a></li>
+          <li><a href="guide.html#install">环境与安装</a></li>
+          <li><a href="guide.html#database">数据库与备份</a></li>
+          <li><a href="guide.html#import">数据导入</a></li>
+          <li><a href="guide.html#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>项目</h4>
+        <ul>
+          <li><a href="download.html">下载与部署</a></li>
+          <li><a href="download.html#publish">便携使用</a></li>
+          <li><a href="download.html#requirements">系统要求</a></li>
+          <li><a href="index.html#screens">界面示意</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> 中国专利管理大师 · CnPatentManager</span>
+      <span class="grow"></span>
+      <span>v1.0.0 · Windows 桌面版</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

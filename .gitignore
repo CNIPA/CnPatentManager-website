@@ -1,0 +1,14 @@
+# 本仓库是「中国专利管理大师」产品官网的发布仓库。
+# 内容由 sync-from-main.ps1 从主仓库的 website/ 目录同步而来，请勿在此手动修改页面。
+
+# 临时文件
+*.tmp
+*.temp
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# 编辑器
+.vscode/
+.idea/
+*.swp

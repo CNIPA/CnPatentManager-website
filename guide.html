@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" data-accent="blue">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>使用指南 · 中国专利管理大师</title>
+<meta name="description" content="中国专利管理大师（CnPatentManager）使用指南：环境准备、安装包与便携目录、建库与挂接数据库、数据导入、日常使用、期限与年费、备份恢复与常见问题。">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="assets/img/logo.ico">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/theme-init.js"></script>
+<script src="assets/js/main.js" defer></script>
+</head>
+<body>
+
+<!-- ============================ 公告条 ============================ -->
+<div class="notice-bar">
+  <span class="pill pill-soft"><span class="dot"></span>v1.0.0</span>
+  <span><strong>内置 2024-01-20 施行的期限新规</strong>：电子送达自发文日起算，名义届满日遇非工作日顺延。</span>
+  <a class="link-arrow" href="guide.html#deadline">了解规则
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</div>
+
+<!-- ============================ 导航 ============================ -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logo-mark.png" alt="中国专利管理大师">
+      <span>中国专利管理大师</span>
+      <span class="brand-sub">CnPatentManager</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">首页</a>
+      <a href="features.html">功能</a>
+      <a href="guide.html">使用指南</a>
+      <a href="download.html">下载</a>
+    </nav>
+    <div class="nav-right">
+      <a class="btn btn-primary btn-sm" href="download.html">下载</a>
+      <button class="icon-btn nav-toggle" id="navToggle" aria-label="展开菜单">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================ 页面头部 ============================ -->
+  <section class="page-head">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="面包屑导航">
+        <a href="index.html">首页</a>
+        <span aria-hidden="true">/</span>
+        <span>使用指南</span>
+      </nav>
+      <h1>使用指南</h1>
+      <p>按实际操作顺序排列：先准备环境与安装，再建库、导入数据，然后进入日常使用，
+         最后是期限年费、备份恢复与常见问题。</p>
+    </div>
+  </section>
+
+  <!-- ============================ 正文 ============================ -->
+  <section class="section">
+    <div class="container">
+      <div class="doc-layout">
+
+        <!-- 侧边目录 -->
+        <aside class="toc reveal">
+          <div class="toc-title">目录</div>
+          <a href="#prepare">一、准备环境</a>
+          <a href="#install">二、安装</a>
+          <a href="#database">三、建库或挂接数据库</a>
+          <a href="#import">四、导入数据</a>
+          <a href="#daily">五、日常使用</a>
+          <a href="#deadline">六、期限与年费</a>
+          <a href="#backup">七、备份、恢复与移交</a>
+          <a href="#faq">八、常见问题</a>
+        </aside>
+
+        <!-- 正文 -->
+        <div class="prose reveal">
+
+          <h2 id="prepare">一、准备环境</h2>
+          <p>中国专利管理大师是一款 Windows 桌面程序，运行在 Windows 10 / 11（x64）上。
+             在安装软件本身之前，机器上需要先有两项前置组件：
+             .NET 8 Desktop Runtime（x64）与 SQL Server LocalDB 2019 或更高版本。</p>
+
+          <h3>.NET 8 桌面运行时</h3>
+          <p>从 .NET 官方下载页获取「.NET Desktop Runtime 8.x」的 x64 安装包并安装：
+             <a href="https://dotnet.microsoft.com/download/dotnet/8.0" rel="noopener">dotnet.microsoft.com/download/dotnet/8.0</a>。
+             注意选择 <strong>Desktop Runtime</strong>，而不是仅含命令行工具的 Runtime。</p>
+
+          <h3>SQL Server LocalDB</h3>
+          <p>LocalDB 随 SQL Server Express 安装包一起分发：运行 SQL Server 2019 / 2022 Express 的安装程序时，
+             勾选 <strong>LocalDB</strong> 组件即可。也可以用包管理器安装：</p>
+          <div class="code"><code>winget install Microsoft.SQLServer.2022.Express</code></div>
+          <div class="callout"><strong>安装向导会自动检测这两项前置组件。</strong>
+            缺少其中任何一项时，向导会给出「一键下载并安装」入口（需联网，安装时会有系统权限确认）；
+            也可以先手动装好组件，再运行安装包。</div>
+
+          <h2 id="install">二、安装</h2>
+          <p>有两种部署方式，任选其一。两者对前置组件的要求完全相同。</p>
+
+          <h3>方式一：安装包</h3>
+          <p>运行 <span class="mono tiny">Setup_CnPatentManager.exe</span>，按向导完成安装。
+             默认安装目录是 <span class="mono tiny">%LOCALAPPDATA%\Programs\CnPatentManager</span>，
+             位于当前用户目录下，不需要管理员权限。向导过程中会检测 .NET 8 Desktop Runtime 与
+             SQL Server LocalDB，缺失时给出「一键下载并安装」入口（需联网，安装时会有系统权限确认）。</p>
+          <p>安装会在开始菜单创建程序与卸载快捷方式，并注册 <span class="mono tiny">.cpam</span> 文件关联 ——
+             之后双击数据库指针文件就能直接打开；是否创建桌面快捷方式可以在向导中勾选。</p>
+
+          <h3>方式二：免安装（便携目录）</h3>
+          <p>把维护者提供的程序目录整体复制到目标机器，双击其中的
+             <span class="mono tiny">CnPatentManager.exe</span> 即可运行，不写注册表、不改动系统设置。
+             目标机器同样需要预先安装 .NET 8 Desktop Runtime 与 LocalDB。</p>
+          <div class="callout"><strong>便携方式不注册文件关联。</strong>
+             指针文件的关联由安装包写入；使用便携目录时，
+             请在数据库选择窗口中用「打开数据库文件 (.mdf)…」挂接数据库。</div>
+
+          <h2 id="database">三、建库或挂接数据库</h2>
+          <p>第一次启动会先出现数据库选择窗口，按实际情况选一种：</p>
+          <ol>
+            <li><span><strong>新建数据库</strong>：在本机数据库引擎上创建一个空库，结构由软件自动建立。</span></li>
+            <li><span><strong>打开数据库文件 (.mdf)</strong>：挂接别人交付或从旧机器带过来的数据库文件。</span></li>
+            <li><span><strong>打开 .cpam 指针文件</strong>：安装了软件时，直接双击 <span class="mono tiny">.cpam</span> 即可。</span></li>
+          </ol>
+          <p>软件在创建或打开数据库时会自动建立所需结构，并把它补齐到与程序一致的版本。</p>
+          <div class="callout"><strong>旧库不需要手工改表。</strong>把旧版本的数据库交给新版本程序打开，
+            软件会自动补齐缺失的内容。升级前建议先做一次备份（见第七节）。</div>
+          <p>挂接 <span class="mono tiny">.mdf</span> 时，把 <span class="mono tiny">.mdf</span> 与同名的
+             <span class="mono tiny">.cpam</span> 放在同一目录最省事；只拿到 <span class="mono tiny">.mdf</span>
+             也能用「打开数据库文件 (.mdf)…」指定。</p>
+
+          <h2 id="import">四、导入数据</h2>
+          <p>数据入口按来源分为五类，可以分批导入，互不影响。</p>
+
+          <h3>通知书与证书 PDF</h3>
+          <p>文书识别会按文书类型分流：通知书与证书写入「通知书清单」，同时更新或新建对应专利。
+             重复导入按<strong>发文序号</strong>幂等去重；没有发文序号时，按
+             <strong>申请号 + 发文日 + 通知书名称</strong>兜底判断，同一份文书不会重复入库。</p>
+
+          <h3>公开公告文本</h3>
+          <p>只更新专利本身：公开号、公开日、公告号、公告日与案件状态，<strong>不写入</strong>通知书清单。</p>
+
+          <h3>CPC 压缩包</h3>
+          <p>解析卷内的清单文件，再读取同目录下的 PDF。
+             正文内容以 PDF 为准，发文序号以清单文件为准。</p>
+
+          <h3>缴费订单与收据</h3>
+          <p>订单、收据与收据明细三层数据分别导入，之后用「缺少收据的缴费记录」核对缺口。
+             收据落库会按规则回写专利状态：申请费 → 受理审查；实审费 → 等待实审提案；
+             年费 → 等待颁证公告并清除逾期日期；办理登记手续 → 等年登印费。</p>
+
+          <h3>Access 历史库</h3>
+          <p>软件随附的数据迁移工具以只读方式读取旧版 Access 数据库，
+             把专利著录项、费用、代理机构与代理师、
+             机构联系人等数据增量导入 —— 只增不改，可以反复运行做校验。</p>
+
+          <div class="callout"><strong>导入后先看两张表。</strong>一是「缺少收据的缴费记录」，
+            二是「应缴年费」。识别失败的项目会单独列出，原因区分「无文字层（扫描件）」
+            「缺少文本提取组件」「解析失败」三类。</div>
+
+          <h2 id="daily">五、日常使用</h2>
+          <p>界面左侧是导航树，右侧是可编辑的数据网格。</p>
+
+          <h3>导航树</h3>
+          <p>树的层级按数据组织，常用入口如下：</p>
+          <ul>
+            <li><span><strong>仪表板</strong>：总专利数、应缴年费、本月到期、逾期未缴，以及年费支出趋势与未来到期分布。</span></li>
+            <li><span><strong>专利</strong>：其下含「统计」（按权利人 / 按案件状态）、各权利人、状态分类
+                （已失效 / 当前有效 / 被驳回 / 审查中 / 未公开）、申请年份、授权年份。</span></li>
+            <li><span><strong>通知书</strong>：其下含「费用明细」。</span></li>
+            <li><span><strong>专利权利人</strong>、<strong>发明（设计）人</strong>、<strong>身份证号</strong>。</span></li>
+            <li><span><strong>代理机构 · 代理师</strong>与<strong>代理机构管理</strong>、<strong>权利人管理</strong>。</span></li>
+            <li><span><strong>缴费年度</strong>、<strong>缴费订单</strong>、<strong>收据</strong>。</span></li>
+            <li><span><strong>应缴年费</strong>：按本月、本年度与未来 1 / 3 / 6 / 12 个月分组。</span></li>
+            <li><span><strong>缺少收据的缴费记录</strong>。</span></li>
+            <li><span>左下角固定「<strong>年费价格设置</strong>」入口。</span></li>
+          </ul>
+
+          <h3>表格交互</h3>
+          <p>表格的操作习惯参照 Access 的数据表视图：
+             单击选中、双击编辑、右键菜单；列宽与排序可以保存，下次打开保持原样。
+             列排序设置与网格搜索都在工具栏中打开。</p>
+
+          <h3>导出</h3>
+          <p>专利列表工具栏提供「📤 导出 Excel」，导出为
+             <span class="mono tiny">.xlsx</span> 文件，列中可以带上<strong>当前权利人</strong>、
+             <strong>当前代理机构</strong>与<strong>当前代理师</strong>。</p>
+
+          <h2 id="deadline">六、期限与年费</h2>
+          <p>期限由统一的规则引擎计算，规则如下：</p>
+          <ul>
+            <li><span><strong>起算点分界</strong>：发文日为 2024-01-20（修改后《专利法实施细则》，国务院令第 769 号）
+                及以后 → 自发文日起算。</span></li>
+            <li><span>发文日早于该日 → 先加 <strong>15 日推定收到</strong>，再计算期间。</span></li>
+            <li><span>以月计算时取最后一月的<strong>对应日</strong>；该月没有对应日则取该月最后一日。</span></li>
+            <li><span>名义届满日不是中国工作日 → <strong>顺延</strong>至其后的第一个工作日。</span></li>
+          </ul>
+          <p>通知书类型对应的期间：</p>
+          <div class="card" style="padding:8px 8px;">
+            <table class="spec-table">
+              <tbody>
+                <tr><th>通知书类型</th><td>对应的期间</td></tr>
+                <tr><th>第一次审查意见通知书</th><td>4 个月</td></tr>
+                <tr><th>第二次及以后审查意见通知书</th><td>2 个月</td></tr>
+                <tr><th>驳回决定</th><td>3 个月（复审请求）</td></tr>
+                <tr><th>复审决定书</th><td>3 个月（起诉）</td></tr>
+                <tr><th>办理登记手续通知书 / 授予专利权通知书</th><td>2 个月</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>以申请日起算的事项（例如缴纳申请费的期限 = <strong>申请日 + 2 个月</strong>）走同一套规则。</p>
+          <p>「应缴年费」节点按本月、本年度与未来 1 / 3 / 6 / 12 个月分组；年费金额来自「年费价格」，
+             在左下角的「年费价格设置」中维护。</p>
+          <div class="callout"><strong>节假日数据按年下载并缓存。</strong>
+            机器离线时会退回「仅按周末」判断，因此跨春节、国庆等长假期的期限，
+            建议联网更新节假日数据后再复核一次。</div>
+
+          <h2 id="backup">七、备份、恢复与移交</h2>
+          <p>数据库选择窗口里有两个固定操作：</p>
+          <ul>
+            <li><span><strong>💾 备份…</strong>：生成一份独立的备份文件，不必停用软件。</span></li>
+            <li><span><strong>↩ 从备份恢复…</strong>：先展示备份内的内容清单，
+                再由你指定恢复到哪个位置。</span></li>
+          </ul>
+          <p>需要把数据库交给同事时，可在数据库选择窗口选中库后「导出为文件…」：
+             软件会复制出数据库文件，同时生成同名的指针文件。
+             把这<strong>两个文件</strong>放在同一目录一起发出，
+             对方双击指针文件即可打开，或用「打开数据库文件 (.mdf)…」挂接。</p>
+          <div class="callout"><strong>换机器或升级软件之前先备份。</strong>
+             备份生成的是独立文件，可以随移动存储一起带走；
+             恢复时请确认目标位置没有同名的库正在使用。</div>
+
+          <h2 id="faq">八、常见问题</h2>
+          <div class="faq">
+            <details>
+              <summary>扫描件 PDF 能识别吗？</summary>
+              <div class="faq-body">
+                <p>2020—2022 年间的部分通知书 PDF 没有文字层，本质是扫描图片，任何纯文本提取都读不出内容。
+                   软件不会静默失败，而是明确区分「无文字层（扫描件）」「缺少文本提取组件」「解析失败」三种原因并逐一提示，
+                   这类文书需要手工补录。</p>
+              </div>
+            </details>
+            <details>
+              <summary>可以多人同时使用吗？</summary>
+              <div class="faq-body">
+                <p>软件定位是单机使用：数据以一个本机数据库文件的形式存在，通过文件交接共享，
+                   不提供多用户并发写入。多人协作时，建议由一个人维护主库，
+                   需要交给他人时导出数据库文件与同名的指针文件。</p>
+              </div>
+            </details>
+            <details>
+              <summary>数据会联网上传吗？</summary>
+              <div class="faq-body">
+                <p>不会。所有业务数据保存在本机数据库文件中。
+                   联网只用于两件事：按年下载法定节假日与调休数据（下载后缓存，可离线使用），
+                   以及安装向导在缺少前置组件时提供官方下载入口。</p>
+              </div>
+            </details>
+            <details>
+              <summary>旧版本的数据库需要手工升级吗？</summary>
+              <div class="faq-body">
+                <p>不需要。软件在打开旧版本数据库时会自动把结构补齐到与程序一致的版本。
+                   升级前建议先备份一次，便于随时回退。</p>
+              </div>
+            </details>
+            <details>
+              <summary>原来的 Access 数据怎么办？</summary>
+              <div class="faq-body">
+                <p>软件随附的数据迁移工具以只读方式读取旧版 Access 数据库，
+                   把专利著录项、费用、代理机构与代理师、机构联系人等数据增量导入 ——
+                   只增不改，可以反复运行做校验。</p>
+              </div>
+            </details>
+            <details>
+              <summary>为什么软件算出的期限和我手算的差一天？</summary>
+              <div class="faq-body">
+                <p>先看起算点：2024-01-20 及以后发文的通知书<strong>自发文日</strong>起算；
+                   早于该日的先加 <strong>15 日推定收到</strong>再计算。再看顺延：名义届满日不是中国工作日时，
+                   软件会顺延至其后的第一个工作日。此外，以月计算时如果目标月份没有对应日，
+                   取该月最后一日。手工计算时漏掉顺延或按错起算点，结果就会相差一两天。</p>
+                <p>如果机器长时间离线，软件只按周末判断工作日，法定节假日与调休带来的差异需要联网更新节假日数据后再复核。</p>
+              </div>
+            </details>
+            <details>
+              <summary>备份文件怎么恢复？</summary>
+              <div class="faq-body">
+                <p>打开数据库选择窗口，点「↩ 从备份恢复…」，选择备份文件。
+                   软件会先展示备份内的内容清单，再由你指定恢复到哪个位置。
+                   恢复前请确认目标位置没有同名的库正在使用。</p>
+              </div>
+            </details>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CTA ============================ -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="cta reveal">
+        <h2>准备好就开始部署</h2>
+        <p>下载页列出了系统要求，以及安装包与便携目录两种交付形式。</p>
+        <div class="btn-row center">
+          <a class="btn btn-primary btn-lg" href="download.html">前往下载</a>
+          <a class="btn btn-ghost btn-lg" href="features.html">查看功能</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================ 页脚 ============================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="index.html">
+          <img src="assets/img/logo-mark.png" alt="">
+          <span>中国专利管理大师</span>
+        </a>
+        <p class="footer-note">本地化专利资产管理软件。台账、通知书、年费期限、收据订单与代理人信息，都在一台机器上说清楚。</p>
+      </div>
+      <div>
+        <h4>产品</h4>
+        <ul>
+          <li><a href="features.html">功能总览</a></li>
+          <li><a href="features.html#patents">专利台账</a></li>
+          <li><a href="features.html#documents">文书识别</a></li>
+          <li><a href="features.html#deadline">年费与期限</a></li>
+          <li><a href="features.html#statistics">统计与导出</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>文档</h4>
+        <ul>
+          <li><a href="guide.html">使用指南</a></li>
+          <li><a href="guide.html#install">环境与安装</a></li>
+          <li><a href="guide.html#database">数据库与备份</a></li>
+          <li><a href="guide.html#import">数据导入</a></li>
+          <li><a href="guide.html#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>项目</h4>
+        <ul>
+          <li><a href="download.html">下载与部署</a></li>
+          <li><a href="download.html#publish">便携使用</a></li>
+          <li><a href="download.html#requirements">系统要求</a></li>
+          <li><a href="index.html#screens">界面示意</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> 中国专利管理大师 · CnPatentManager</span>
+      <span class="grow"></span>
+      <span>v1.0.0 · Windows 桌面版</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

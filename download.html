@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light" data-accent="blue">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>下载 · 中国专利管理大师</title>
+<meta name="description" content="中国专利管理大师（CnPatentManager）下载与部署：运行环境要求、安装包与便携目录两种交付形式、安装后行为与首次使用三步。">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="assets/img/logo.ico">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/theme-init.js"></script>
+<script src="assets/js/main.js" defer></script>
+</head>
+<body>
+
+<!-- ============================ 公告条 ============================ -->
+<div class="notice-bar">
+  <span class="pill pill-soft"><span class="dot"></span>v1.0.0</span>
+  <span><strong>内置 2024-01-20 施行的期限新规</strong>：电子送达自发文日起算，名义届满日遇非工作日顺延。</span>
+  <a class="link-arrow" href="guide.html#deadline">了解规则
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </a>
+</div>
+
+<!-- ============================ 导航 ============================ -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logo-mark.png" alt="中国专利管理大师">
+      <span>中国专利管理大师</span>
+      <span class="brand-sub">CnPatentManager</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">首页</a>
+      <a href="features.html">功能</a>
+      <a href="guide.html">使用指南</a>
+      <a href="download.html">下载</a>
+    </nav>
+    <div class="nav-right">
+      <a class="btn btn-primary btn-sm" href="download.html">下载</a>
+      <button class="icon-btn nav-toggle" id="navToggle" aria-label="展开菜单">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================ 页面头部 ============================ -->
+  <section class="page-head">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="面包屑导航">
+        <a href="index.html">首页</a>
+        <span aria-hidden="true">/</span>
+        <span>下载</span>
+      </nav>
+      <h1>下载</h1>
+      <p>软件以两种形式交付：安装包，或免安装的便携目录。本页说明运行环境要求、
+         两种形式各自的安装与使用方式，以及首次使用的三步。</p>
+      <div class="btn-row reveal" style="margin-top:30px;">
+        <a class="pill" href="#requirements">系统要求</a>
+        <a class="pill" href="#get">获取方式</a>
+        <a class="pill" href="#publish">便携使用</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 系统要求 ============================ -->
+  <section class="section" id="requirements">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">系统要求</div>
+        <h2>运行软件需要什么</h2>
+        <p>这是一款 Windows 桌面软件，数据保存在本机，不需要额外的服务器。</p>
+      </div>
+
+      <div class="card reveal" style="padding:8px 8px;">
+        <table class="spec-table">
+          <tbody>
+            <tr><th>操作系统</th><td>Windows 10 / 11（<strong>x64</strong>）</td></tr>
+            <tr><th>运行组件</th><td>.NET 8 Desktop Runtime（x64），安装向导会检测并给出下载入口</td></tr>
+            <tr><th>数据库</th><td>SQL Server LocalDB 2019 或更高版本，安装向导会一并检测与提示</td></tr>
+            <tr><th>旧库升级</th><td>打开旧版本数据库时自动补齐所需内容，不需要手工改表</td></tr>
+            <tr><th>安装位置</th><td>默认为 <span class="mono tiny">%LOCALAPPDATA%\Programs\CnPatentManager</span>，当前用户目录，不需要管理员权限</td></tr>
+            <tr><th>磁盘占用</th><td>取决于数据量 —— 除程序本体外，还有本机数据库文件与备份文件，随专利与费用记录的规模增长</td></tr>
+            <tr><th>网络</th><td>无云服务依赖。联网仅用于按年下载法定节假日 / 调休数据，以及安装向导下载前置组件</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 获取方式 ============================ -->
+  <section class="section section-soft" id="get">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">获取方式</div>
+        <h2>两种交付形式</h2>
+        <p>安装包适合分发给最终用户；便携目录适合快速试用，或在多台机器之间搬移。</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card card-lg reveal">
+          <div class="card-index">Setup_CnPatentManager.exe</div>
+          <h3 style="margin-top:14px;">安装包</h3>
+          <p>双击后按向导安装到当前用户目录，不需要管理员权限。</p>
+          <ul class="check-list" style="margin-top:18px;">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>注册 <span class="mono tiny">.cpam</span> 文件关联，双击数据库指针文件即可打开。</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>在开始菜单创建程序与卸载快捷方式，桌面快捷方式可选。</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>向导检测 .NET 8 Desktop Runtime 与 SQL Server LocalDB，缺失时提供一键下载入口。</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card card-lg reveal">
+          <div class="card-index">便携目录</div>
+          <h3 style="margin-top:14px;">免安装（便携目录）</h3>
+          <p>把程序目录整体复制到目标机器，运行
+             <span class="mono tiny">CnPatentManager.exe</span> 即可，不写注册表、不改动系统设置。</p>
+          <ul class="check-list" style="margin-top:18px;">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>不写注册表，不注册文件关联，卸载等于删除目录。</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>目标机器仍需预先安装 .NET 8 Desktop Runtime 与 SQL Server LocalDB。</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>挂接数据库时使用「打开数据库文件 (.mdf)…」，或双击已有关联的 <span class="mono tiny">.cpam</span>。</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout reveal" style="margin-top:24px;">
+        <strong>本页不提供下载链接。</strong>
+        需要安装包或便携目录，请向软件的维护者索取；两者使用同一份发布版本。
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 便携使用 ============================ -->
+  <section class="section" id="publish">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">便携使用</div>
+        <h2>不安装也能用</h2>
+        <p>如果不想在机器上安装，用便携目录即可；换机器或回退版本，替换目录就行。</p>
+      </div>
+
+      <div class="stack-24">
+        <div class="grid grid-3">
+          <div class="card reveal">
+            <div class="card-index">STEP 01 · 复制</div>
+            <p style="margin-top:14px;">把程序目录整体复制到目标机器（U 盘、共享目录、压缩包都可以）。</p>
+          </div>
+          <div class="card reveal">
+            <div class="card-index">STEP 02 · 确认环境</div>
+            <p style="margin-top:14px;">确认目标机器已装好 .NET 8 Desktop Runtime 与 SQL Server LocalDB。</p>
+          </div>
+          <div class="card reveal">
+            <div class="card-index">STEP 03 · 启动</div>
+            <p style="margin-top:14px;">双击目录中的 <span class="mono tiny">CnPatentManager.exe</span> 启动程序。</p>
+          </div>
+        </div>
+
+        <div class="card card-lg reveal">
+          <h3>便携方式的取舍</h3>
+          <ul class="check-list" style="margin-top:18px;">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>不写注册表、不注册文件关联，卸载等于删除目录。</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>指针文件的关联由安装包写入，便携方式下请用「打开数据库文件 (.mdf)…」挂接数据库。</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              <span>数据保存在本机数据库文件中，与程序目录无关；换机器时按使用指南的备份与移交一节处理。</span>
+            </li>
+          </ul>
+          <div class="btn-row" style="margin-top:20px;">
+            <a class="btn btn-ghost" href="guide.html#backup">备份与移交说明</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 安装后行为 ============================ -->
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">安装之后</div>
+        <h2>安装包会做这几件事</h2>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card reveal" style="padding:8px 8px;">
+          <table class="spec-table">
+            <tbody>
+              <tr><th>安装目录</th><td>当前用户目录下，按用户安装，不需要管理员权限</td></tr>
+              <tr><th>文件关联</th><td>双击 .cpam 指针文件即可直接打开对应数据库</td></tr>
+              <tr><th>快捷方式</th><td>开始菜单创建程序与卸载入口；桌面快捷方式可在向导中勾选</td></tr>
+              <tr><th>权限</th><td>按当前用户安装，不需要管理员权限（前置组件安装时会有系统权限确认）</td></tr>
+              <tr><th>前置检测</th><td>检测 .NET 8 Desktop Runtime（x64）与 SQL Server LocalDB，缺失时给出下载入口</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+          </div>
+          <h3>安装向导里的两个前置组件</h3>
+          <p>.NET 8 Desktop Runtime 与 SQL Server LocalDB 都是必需项：缺少前者的程序无法启动，
+             缺少后者的数据库无法创建。向导会检测并给出「一键下载并安装」按钮（需联网），
+             也可以提前手动装好再运行安装程序。</p>
+          <p class="small muted" style="margin-top:14px;">
+            LocalDB 随 SQL Server Express 安装包分发，安装时勾选 LocalDB 组件即可；
+            详细步骤见<a href="guide.html#prepare">使用指南 · 准备环境</a>。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 首次使用三步 ============================ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center reveal">
+        <div class="eyebrow">首次使用</div>
+        <h2>三步看到自己的数据</h2>
+      </div>
+      <ol class="steps steps-3 reveal">
+        <li>
+          <div class="step-num">01</div>
+          <h3>建库</h3>
+          <p>首次启动选择「新建数据库」，创建一个新的空数据库；
+             已有数据文件时选「打开数据库文件 (.mdf)」或直接双击 .cpam。</p>
+        </li>
+        <li>
+          <div class="step-num">02</div>
+          <h3>导入</h3>
+          <p>导入通知书与证书 PDF、公开公告文本、CPC 卷、缴费订单与收据；
+             旧版 Access 数据可用随附的迁移工具增量导入。</p>
+        </li>
+        <li>
+          <div class="step-num">03</div>
+          <h3>核对</h3>
+          <p>在仪表板确认专利总量与逾期未缴，再打开「缺少收据的缴费记录」与「应缴年费」两张清单，
+             处理突出显示的行。</p>
+        </li>
+      </ol>
+      <div class="btn-row center reveal" style="margin-top:36px;">
+        <a class="btn btn-ghost" href="guide.html#import">查看数据导入说明</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ CTA ============================ -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="cta reveal">
+        <h2>部署前先读一遍安装说明</h2>
+        <p>使用指南按操作顺序写好了环境准备、安装、建库、导入、备份与常见问题，
+           遇到报错可以先在常见问题里对照原因。</p>
+        <div class="btn-row center">
+          <a class="btn btn-primary btn-lg" href="guide.html">阅读使用指南</a>
+          <a class="btn btn-ghost btn-lg" href="features.html">查看功能</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================ 页脚 ============================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <a class="brand" href="index.html">
+          <img src="assets/img/logo-mark.png" alt="">
+          <span>中国专利管理大师</span>
+        </a>
+        <p class="footer-note">本地化专利资产管理软件。台账、通知书、年费期限、收据订单与代理人信息，都在一台机器上说清楚。</p>
+      </div>
+      <div>
+        <h4>产品</h4>
+        <ul>
+          <li><a href="features.html">功能总览</a></li>
+          <li><a href="features.html#patents">专利台账</a></li>
+          <li><a href="features.html#documents">文书识别</a></li>
+          <li><a href="features.html#deadline">年费与期限</a></li>
+          <li><a href="features.html#statistics">统计与导出</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>文档</h4>
+        <ul>
+          <li><a href="guide.html">使用指南</a></li>
+          <li><a href="guide.html#install">环境与安装</a></li>
+          <li><a href="guide.html#database">数据库与备份</a></li>
+          <li><a href="guide.html#import">数据导入</a></li>
+          <li><a href="guide.html#faq">常见问题</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>项目</h4>
+        <ul>
+          <li><a href="download.html">下载与部署</a></li>
+          <li><a href="download.html#publish">便携使用</a></li>
+          <li><a href="download.html#requirements">系统要求</a></li>
+          <li><a href="index.html#screens">界面示意</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> 中国专利管理大师 · CnPatentManager</span>
+      <span class="grow"></span>
+      <span>v1.0.0 · Windows 桌面版</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
