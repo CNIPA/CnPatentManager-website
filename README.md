@@ -3,8 +3,10 @@
 本仓库只存放**产品官网的静态页面**，通过 GitHub Pages 对外发布。
 软件本身的源代码不在这里，也未公开。
 
-- 线上地址：https://cnipa.github.io/CnPatentAnnuityManager/
+- 线上地址：https://cnipa.github.io/CnPatentManager-Website/
 - 站点为纯静态文件：无构建步骤、无依赖、无 CDN，克隆下来直接打开即可。
+- 仓库名是「产品名 + Website」，与软件真实名称 `CnPatentManager` 区分开 ——
+  这里公开的只是官网页面，不是程序本身。
 
 ## 目录
 
