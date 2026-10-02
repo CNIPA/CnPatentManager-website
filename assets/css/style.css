@@ -39,34 +39,50 @@
   --warn:        #d97706;
   --danger:      #dc2626;
 
-  /* 圆角 */
+  /* 圆角：容器软、内部紧，形成可嵌套的层级（内层卡片的圆角写在「卡片与网格」一节） */
+  --r-xs:   6px;
   --r-sm:   8px;
   --r:      12px;
-  --r-lg:   18px;
-  --r-xl:   26px;
+  --r-lg:   16px;
+  --r-xl:   24px;
   --r-pill: 999px;
 
-  /* 排版 */
-  --font: "Inter", system-ui, -apple-system, "Segoe UI", "PingFang SC",
-          "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  /* 排版
+     Inter 没有随站点分发（站点无 CDN、无依赖），写进字体栈只会让「装了 Inter 的
+     访客看到一个版本、没装的看到另一个」。改成确定性的系统字体栈：拉丁优先
+     Segoe UI Variable（Win11）/ Segoe UI，中文优先苹方 / 微软雅黑，各平台观感一致。
+     --font-display 只给大字号标题用：Display 光学尺寸在 40px 以上更紧、更挺拔。 */
+  --font: "Segoe UI Variable Text", system-ui, -apple-system, "Segoe UI",
+          "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei",
+          "Hiragino Sans GB", "Noto Sans CJK SC", sans-serif;
+  --font-display: "Segoe UI Variable Display", "Segoe UI Variable Text", system-ui,
+          -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei UI",
+          "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
   --mono: ui-monospace, SFMono-Regular, "JetBrains Mono", "Cascadia Mono",
           Consolas, "Courier New", monospace;
 
   /* 版心 */
-  --maxw: 1120px;
-  --maxw-narrow: 820px;
+  --maxw: 1200px;
+  --maxw-narrow: 780px;
   --gutter: 24px;
   --nav-h: 64px;
   --nav-blur-bg: rgba(255, 255, 255, 0.82);
 
   /* 动效 */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur:  0.22s;
 
-  /* 阴影：极浅，靠边框而非投影分层 */
-  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-2: 0 8px 28px rgba(0, 0, 0, 0.06);
-  --shadow-win: 0 18px 60px rgba(15, 15, 20, 0.12), 0 2px 8px rgba(15, 15, 20, 0.06);
+  /* 层级：统一在这里排，页面里不再出现裸 z-index */
+  --z-grain: 1;
+  --z-nav:   100;
+  --z-skip:  200;
+
+  /* 阴影：不用纯黑，统一染上背景的冷调（RGB 18,22,45）；只做轻微投影 —— 分层仍以边框为主 */
+  --shadow-tint: 18, 22, 45;
+  --shadow-1: 0 1px 2px rgba(var(--shadow-tint), 0.05);
+  --shadow-2: 0 10px 30px -14px rgba(var(--shadow-tint), 0.22), 0 2px 6px rgba(var(--shadow-tint), 0.05);
+  --shadow-win: 0 30px 72px -30px rgba(var(--shadow-tint), 0.32), 0 6px 16px -8px rgba(var(--shadow-tint), 0.12);
 }
 
 /* 深色主题 */
@@ -94,9 +110,10 @@
   --warn:   #f0a63c;
   --danger: #f4645f;
 
-  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-2: 0 8px 28px rgba(0, 0, 0, 0.5);
-  --shadow-win: 0 18px 60px rgba(0, 0, 0, 0.62), 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-tint: 0, 0, 0;
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow-2: 0 10px 30px -14px rgba(0, 0, 0, 0.65), 0 2px 6px rgba(0, 0, 0, 0.4);
+  --shadow-win: 0 30px 72px -30px rgba(0, 0, 0, 0.8), 0 6px 16px -8px rgba(0, 0, 0, 0.55);
 }
 
 /* --------------------------------------------------------------------------
@@ -180,20 +197,55 @@ body {
   font-size: 16px;
   line-height: 1.7;
   font-feature-settings: "kern" 1;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
+/* 颗粒：一层固定的极淡噪点，打断纯色块的「数字平坦感」。
+   纯 CSS 内联 SVG，不引外部资源；pointer-events 关掉，不影响任何交互。 */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-grain);
+  pointer-events: none;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+[data-theme="dark"] body::after { opacity: 0.05; }
+
 h1, h2, h3, h4, h5 {
   margin: 0;
+  font-family: var(--font-display);
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--text);
+  text-wrap: balance;
 }
 
-p { margin: 0; }
+/* 中文标点会把末行顶成一个孤字，交给浏览器做断行优化；不支持的浏览器原样退让 */
+p { margin: 0; text-wrap: pretty; }
+
+/* 键盘用户跳过导航（默认贴到视口外，聚焦时滑入） */
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: -64px;
+  z-index: var(--z-skip);
+  padding: 10px 16px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: var(--shadow-2);
+  transition: top 0.18s var(--ease);
+}
+.skip-link:focus { top: 12px; color: var(--text); }
 
 a {
   color: inherit;
@@ -241,8 +293,9 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 .container-narrow { max-width: var(--maxw-narrow); }
 
-.section { padding: 104px 0; }
-.section-sm { padding: 64px 0; }
+/* 上下内边距不是镜像值：底部略大一点，视觉重心才落在中线上 */
+.section { padding: 112px 0 120px; }
+.section-sm { padding: 68px 0 76px; }
 .section-soft { background: var(--bg-soft); }
 .section-line { border-top: 1px solid var(--line); }
 
@@ -252,6 +305,30 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
 .stack-16 > * + * { margin-top: 16px; }
 .stack-24 > * + * { margin-top: 24px; }
 .stack-32 > * + * { margin-top: 32px; }
+
+/* 间距工具类：替代散落在 HTML 里的 style="margin-top:…"。
+   只收录实际用到的档位，避免长出一套没人用的原子类。 */
+.mt-8  { margin-top: 8px; }
+.mt-10 { margin-top: 10px; }
+.mt-12 { margin-top: 12px; }
+.mt-14 { margin-top: 14px; }
+.mt-18 { margin-top: 18px; }
+.mt-20 { margin-top: 20px; }
+.mt-24 { margin-top: 24px; }
+.mt-28 { margin-top: 28px; }
+.mt-30 { margin-top: 30px; }
+.mt-34 { margin-top: 34px; }
+.mt-36 { margin-top: 36px; }
+.mt-52 { margin-top: 52px; }
+.pt-0  { padding-top: 0; }
+.mb-0  { margin-bottom: 0; }
+
+/* 宽栏 + 大间距的两栏组合（原先写作行内 style） */
+.grid-spread { align-items: start; gap: 56px; }
+@media (max-width: 980px) { .grid-spread { gap: 32px; } }
+
+/* 数字列：等宽数字，避免逐行跳动 */
+.tnum { font-variant-numeric: tabular-nums; }
 
 /* --------------------------------------------------------------------------
    4. 文字与标题
@@ -285,6 +362,14 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
   color: var(--text-2);
 }
 
+/* 不在 .section-head 里、直接排在两栏网格中的二级标题（原先写作行内 style） */
+.h2-sub {
+  font-size: clamp(24px, 3vw, 34px);
+  letter-spacing: -0.03em;
+}
+/* 卡片之外的小三级标题 */
+.h3-sm { font-size: 16px; }
+
 .lead {
   font-size: clamp(17px, 1.6vw, 19px);
   color: var(--text-2);
@@ -295,6 +380,7 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
 .dim   { color: var(--text-3); }
 .small { font-size: 14px; }
 .tiny  { font-size: 13px; }
+.text-15 { font-size: 15px; }
 .mono  { font-family: var(--mono); }
 .nowrap { white-space: nowrap; }
 
@@ -306,16 +392,26 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
 .nav {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: var(--z-nav);
   height: var(--nav-h);
   background: var(--nav-blur-bg);
   background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: saturate(180%) blur(14px);
-  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
   border-bottom: 1px solid transparent;
-  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease);
+  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
 }
-.nav.is-scrolled { border-bottom-color: var(--line); }
+.nav.is-scrolled {
+  border-bottom-color: var(--line);
+  box-shadow: 0 1px 0 rgba(var(--shadow-tint), 0.03), 0 6px 20px -16px rgba(var(--shadow-tint), 0.35);
+}
+/* 菜单展开时按钮给出明确的按压态 */
+.nav.is-open .nav-toggle {
+  border-color: var(--line-3);
+  background: var(--bg-sunken);
+  color: var(--text);
+}
 
 .nav-inner {
   height: var(--nav-h);
@@ -464,14 +560,19 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
 }
 .btn svg { width: 17px; height: 17px; }
 .btn:hover { transform: translateY(-1px); }
-.btn:active { transform: translateY(0); }
+.btn:active { transform: translateY(0) scale(0.98); transition-duration: 0.08s; }
 
 .btn-primary {
   background: var(--accent);
   color: var(--accent-ink);
   box-shadow: var(--shadow-1);
 }
-.btn-primary:hover { color: var(--accent-ink); filter: brightness(1.06); }
+/* 悬停色朝当前主题的背景方向偏一点：浅色下变亮、深色下变暗，两个主题都成立 */
+.btn-primary:hover {
+  color: var(--accent-ink);
+  background: color-mix(in srgb, var(--accent) 90%, var(--bg));
+  box-shadow: var(--shadow-2);
+}
 
 .btn-ghost {
   background: var(--surface);
@@ -539,29 +640,44 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .hero {
   position: relative;
-  padding: 132px 0 96px;
+  padding: 132px 0 104px;
   text-align: center;
   overflow: hidden;
 }
+/* 两层错开的径向渐变叠成一片不规则的「光雾」，比单层 45° 线性渐变自然 */
 .hero::before {
   content: "";
   position: absolute;
   left: 50%;
-  top: -260px;
-  width: 900px;
-  height: 620px;
+  top: -280px;
+  width: 1120px;
+  height: 720px;
   transform: translateX(-50%);
-  background: radial-gradient(closest-side, var(--accent-soft), transparent 72%);
-  opacity: 0.85;
+  background:
+    radial-gradient(closest-side at 60% 42%, var(--accent-soft), transparent 70%),
+    radial-gradient(closest-side at 38% 62%, var(--accent-soft), transparent 76%);
+  opacity: 0.9;
   pointer-events: none;
 }
-.hero > .container { position: relative; }
+/* 一层被椭圆遮罩吃掉边缘的点阵：给首屏一点「工程图纸」的质感，避免大片纯色 */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 1px 1px, var(--line-2) 1px, transparent 0);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse 60% 56% at 50% 10%, #000 10%, transparent 78%);
+  mask-image: radial-gradient(ellipse 60% 56% at 50% 10%, #000 10%, transparent 78%);
+  opacity: 0.65;
+}
+.hero > .container { position: relative; z-index: 1; }
 
 .hero-title {
-  font-size: clamp(36px, 6.4vw, 62px);
-  font-weight: 500;
-  letter-spacing: -0.04em;
-  line-height: 1.14;
+  font-size: clamp(36px, 6.6vw, 64px);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.12;
 }
 .hero-sub {
   margin: 26px auto 0;
@@ -581,6 +697,8 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
   height: 76px;
   margin: 0 auto 30px;
   object-fit: contain;
+  /* 带色投影：投影跟背景同一个冷调，不用纯黑 */
+  filter: drop-shadow(0 12px 26px rgba(var(--shadow-tint), 0.18));
 }
 
 /* 数字条 */
@@ -593,17 +711,20 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
   border-radius: var(--r-lg);
   overflow: hidden;
   margin-top: 72px;
+  box-shadow: var(--shadow-2);
 }
 .stat-strip > div {
   background: var(--surface);
-  padding: 26px 22px;
+  padding: 28px 24px;
   text-align: left;
 }
 .stat-num {
+  font-family: var(--font-display);
   font-size: 30px;
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.1;
+  font-variant-numeric: tabular-nums;
 }
 .stat-label { margin-top: 8px; font-size: 13.5px; color: var(--text-2); }
 
@@ -645,6 +766,7 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
 
 .card {
   position: relative;
+  isolation: isolate;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
@@ -652,12 +774,29 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
   transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease),
               box-shadow var(--dur) var(--ease);
 }
+/* 卡片内容统一压在聚光层之上 */
+.card > * { position: relative; z-index: 1; }
+
 .card-flat { background: var(--surface-2); }
 .card-hover:hover {
   border-color: var(--line-3);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-2);
 }
+/* 跟随指针的柔光：JS 只写 --mx / --my 两个变量，其余全交给 CSS */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%),
+              var(--accent-soft), transparent 62%);
+}
+.card-hover:hover::before { opacity: 1; }
+
 .card h3 { font-size: 17px; }
 .card p { margin-top: 12px; font-size: 14.5px; color: var(--text-2); line-height: 1.72; }
 .card .card-icon {
@@ -673,6 +812,85 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
 .card .card-icon svg { width: 19px; height: 19px; }
 .card-lg { padding: 36px; }
 .card-quiet { background: transparent; }
+
+/* 整张卡片当链接用（404 页的入口卡）：卡片本身不跟着变强调色，只有标题变色 */
+a.card { display: block; color: inherit; }
+a.card:hover { color: inherit; }
+a.card:hover h3 { color: var(--accent-text); }
+
+/* 卡片套卡片时，内层圆角要收紧，否则两层同半径看起来「没对上」 */
+.card .card { border-radius: var(--r); }
+
+/* 包住 spec-table 的卡片：外边距交给表格自己撑，卡片只留一圈外框 */
+.card-table { padding: 8px; }
+
+/* 卡片内的小号信息块（图表卡、小窗格） */
+.card-compact { padding: 14px; }
+
+/* 小标题前的线性图标：统一笔画，替代彩色 emoji（emoji 的渲染随系统变化，
+   且与站点「单一强调色」的用色规则冲突） */
+.h3-icon {
+  width: 17px;
+  height: 17px;
+  margin-right: 8px;
+  vertical-align: -3px;
+  color: var(--accent-text);
+}
+
+/* --------------------------------------------------------------------------
+   8b. Bento 栅格
+   「三列等宽卡片」是最容易出现模板感的版式。这里改成 4 列配比：信息量最大的
+   两项各占 2 格并转为横向排布（图标在左、文字在右），其余四项各占 1 格。
+   每行 2+1+1 或 1+1+2 都是 4 格整数配比，不会出现半格。
+   -------------------------------------------------------------------------- */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.bento > .b-2 {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 20px;
+  /* 宽格的内容通常比同排的窄格短，垂直居中才不会在卡片底部留一块空 */
+  align-content: center;
+  padding: 30px;
+}
+.bento > .b-2 > * { grid-column: 2; }
+.bento > .b-2 > .card-icon {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 0;
+  border-radius: var(--r);
+}
+.bento > .b-2 > .card-icon svg { width: 21px; height: 21px; }
+.bento > .b-2 > h3 { grid-row: 1; font-size: 19px; }
+.bento > .b-2 > p { grid-row: 2; margin-top: 10px; font-size: 15px; }
+
+@media (max-width: 1000px) {
+  .bento { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bento > .b-2 { grid-column: span 2; }
+}
+@media (max-width: 640px) {
+  .bento { grid-template-columns: 1fr; }
+  .bento > .b-2 {
+    grid-column: auto;
+    display: block;
+    padding: 24px;
+  }
+  .bento > .b-2 > .card-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 16px;
+  }
+  .bento > .b-2 > h3 { font-size: 17px; }
+  .bento > .b-2 > p { margin-top: 12px; font-size: 14.5px; }
+}
 
 .card-index {
   font-family: var(--mono);
@@ -721,12 +939,17 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
    9. 界面示意（纯 CSS 绘制的软件窗口，非截图）
    -------------------------------------------------------------------------- */
 .win {
+  position: relative;
   border: 1px solid var(--line-2);
   border-radius: var(--r-lg);
   background: var(--surface);
-  box-shadow: var(--shadow-win);
+  /* 外投影 + 一道 1px 内高光：模拟窗口边缘的折射，避免大块面板「贴」在背景上 */
+  box-shadow: var(--shadow-win), inset 0 1px 0 rgba(255, 255, 255, 0.55);
   overflow: hidden;
   font-size: 12.5px;
+}
+[data-theme="dark"] .win {
+  box-shadow: var(--shadow-win), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 .win-bar {
   display: flex;
@@ -820,10 +1043,12 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
 .kpi .kpi-label { font-size: 11px; color: var(--text-3); }
 .kpi .kpi-value {
   margin-top: 6px;
+  font-family: var(--font-display);
   font-size: 21px;
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.1;
+  font-variant-numeric: tabular-nums;
 }
 .kpi .kpi-foot { margin-top: 4px; font-size: 10.5px; color: var(--text-3); }
 .kpi.is-accent .kpi-value { color: var(--accent-text); }
@@ -854,7 +1079,7 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
 .bars span.is-peak { background: var(--accent-line); }
 
 /* 迷你表格 */
-.mini-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+.mini-table { width: 100%; border-collapse: collapse; font-size: 11.5px; font-variant-numeric: tabular-nums; }
 .mini-table th {
   text-align: left;
   font-weight: 500;
@@ -932,7 +1157,7 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
 /* --------------------------------------------------------------------------
    10. 技术规格表
    -------------------------------------------------------------------------- */
-.spec-table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+.spec-table { width: 100%; border-collapse: collapse; font-size: 14.5px; font-variant-numeric: tabular-nums; }
 .spec-table th,
 .spec-table td {
   text-align: left;
@@ -951,7 +1176,25 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
 .spec-table tr:last-child th,
 .spec-table tr:last-child td { border-bottom: 0; }
 .spec-table strong { color: var(--text); font-weight: 500; }
+
+/* 表头行用真正的 thead，而不是在 tbody 里拿 th/td 假装一行表头 */
+.spec-table thead th {
+  color: var(--text-2);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding-top: 14px;
+  padding-bottom: 12px;
+  border-bottom-color: var(--line-2);
+  white-space: nowrap;
+}
+.spec-table thead th + th { width: auto; }
+.spec-table thead + tbody tr:first-child th,
+.spec-table thead + tbody tr:first-child td { padding-top: 18px; }
+
 @media (max-width: 640px) {
+  /* 窄屏下每行改成「标签在上、取值在下」的堆叠块，表头行随之失去意义 */
+  .spec-table thead { display: none; }
   .spec-table th { width: auto; display: block; padding-bottom: 0; border: 0; }
   .spec-table td { display: block; padding-top: 4px; }
   .spec-table tr { display: block; padding: 14px 0; border-bottom: 1px solid var(--line); }
@@ -1034,12 +1277,27 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
    13. CTA 区块
    -------------------------------------------------------------------------- */
 .cta {
+  position: relative;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--r-xl);
   background: var(--surface-2);
   padding: 64px 40px;
   text-align: center;
 }
+/* 收尾区块给一层极淡的强调色光晕，别让最后一眼是块纯灰色 */
+.cta::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -46%;
+  width: 780px;
+  height: 460px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, var(--accent-soft), transparent 72%);
+  pointer-events: none;
+}
+.cta > * { position: relative; z-index: 1; }
 .cta h2 { font-size: clamp(24px, 3vw, 34px); letter-spacing: -0.03em; }
 .cta p { margin: 18px auto 0; max-width: 560px; color: var(--text-2); }
 .cta .btn-row { margin-top: 32px; }
@@ -1080,6 +1338,11 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
   color: var(--text-3);
 }
 .footer-bottom .grow { margin-left: auto; }
+/* 备案号位：默认不在页面上出现（四个 HTML 里都是注释），备案通过后取消注释即用 */
+.footer-icp { display: inline-flex; align-items: center; gap: 6px; }
+.footer-icp a { color: var(--text-3); }
+.footer-icp a:hover { color: var(--accent-text); }
+.footer-icp img { height: 14px; width: auto; }
 @media (max-width: 860px) {
   .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
@@ -1093,16 +1356,27 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
 /* 仅在脚本可用时隐藏初始状态，避免 JS 失效导致内容不可见 */
 .js .reveal {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  transform: translateY(16px);
+  transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
   will-change: opacity, transform;
 }
 .js .reveal.is-in { opacity: 1; transform: none; }
 
+/* 错峰入场：同一组元素依次出现，而不是整块一起弹出来 */
+.js :is(.grid, .bento, .stack-24) > .reveal:nth-child(2) { transition-delay: 70ms; }
+.js :is(.grid, .bento, .stack-24) > .reveal:nth-child(3) { transition-delay: 140ms; }
+.js :is(.grid, .bento, .stack-24) > .reveal:nth-child(4) { transition-delay: 210ms; }
+.js :is(.grid, .bento, .stack-24) > .reveal:nth-child(5) { transition-delay: 280ms; }
+.js :is(.grid, .bento, .stack-24) > .reveal:nth-child(6) { transition-delay: 350ms; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  * , *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0s !important;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -1160,7 +1434,8 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
   .toc { position: static; border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 20px; }
 }
 
-.prose { max-width: 760px; }
+/* 中文正文一行 40 字左右最舒服；760px 在 15px 字号下接近 50 字，收窄到 700px */
+.prose { max-width: 700px; }
 .prose h2 {
   font-size: 24px;
   margin-top: 56px;
@@ -1218,12 +1493,13 @@ code, kbd, pre { font-family: var(--mono); font-size: 0.875em; }
    -------------------------------------------------------------------------- */
 @media (max-width: 640px) {
   :root { --gutter: 18px; }
-  .section { padding: 72px 0; }
-  .section-sm { padding: 48px 0; }
+  .section { padding: 76px 0 84px; }
+  .section-sm { padding: 52px 0 60px; }
   .section-head { margin-bottom: 40px; }
   .section-head p { font-size: 15.5px; }
-  .hero { padding: 88px 0 64px; }
-  .hero::before { width: 560px; height: 420px; top: -180px; }
+  .hero { padding: 92px 0 72px; }
+  .hero::before { width: 720px; height: 480px; top: -200px; }
+  .hero::after { background-size: 22px 22px; }
   .hero-mark { width: 62px; height: 62px; margin-bottom: 22px; }
   .stat-strip { margin-top: 52px; }
   .stat-strip > div { padding: 20px 16px; }

@@ -5,14 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>中国专利管理大师 · 本地化专利资产管理软件</title>
 <meta name="description" content="中国专利管理大师（CnPatentManager）是一款面向代理机构与企业的 Windows 桌面软件：专利台账、通知书智能识别、年费与期限管理、收据与订单对账、权利人与代理机构管理，数据全部存放在本机。">
+<link rel="canonical" href="https://cnpatentmanager.cn/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="中国专利管理大师">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="中国专利管理大师 · 本地化专利资产管理软件">
+<meta property="og:description" content="Windows 桌面端专利管理软件：台账、通知书识别、年费期限、收据对账，数据全部存放在本机。">
+<meta property="og:url" content="https://cnpatentmanager.cn/">
+<meta property="og:image" content="https://cnpatentmanager.cn/assets/img/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="中国专利管理大师 · 本地化专利资产管理软件">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#ffffff">
-<link rel="icon" href="assets/img/logo.ico">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e0e10" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/img/logo.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/img/logo-mark.png">
 <link rel="stylesheet" href="assets/css/style.css">
 <script src="assets/js/theme-init.js"></script>
 <script src="assets/js/main.js" defer></script>
 </head>
 <body>
+
+<a class="skip-link" href="#main">跳到主要内容</a>
 
 <!-- ============================ 公告条 ============================ -->
 <div class="notice-bar">
@@ -27,7 +43,7 @@
 <header class="nav" id="nav">
   <div class="container nav-inner">
     <a class="brand" href="index.html">
-      <img src="assets/img/logo-mark.png" alt="中国专利管理大师">
+      <img src="assets/img/logo-mark.png" alt="">
       <span>中国专利管理大师</span>
       <span class="brand-sub">CnPatentManager</span>
     </a>
@@ -39,14 +55,15 @@
     </nav>
     <div class="nav-right">
       <a class="btn btn-primary btn-sm" href="download.html">下载</a>
-      <button class="icon-btn nav-toggle" id="navToggle" aria-label="展开菜单">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <button class="icon-btn nav-toggle" id="navToggle" type="button"
+              aria-label="展开菜单" aria-expanded="false" aria-controls="navLinks">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </div>
   </div>
 </header>
 
-<main>
+<main id="main">
 
   <!-- ============================ Hero ============================ -->
   <section class="hero">
@@ -97,8 +114,8 @@
            文书进来，字段落库，期限自动算出来，缴费与收据自动对上。</p>
       </div>
 
-      <div class="grid grid-3">
-        <article class="card card-hover reveal">
+      <div class="bento">
+        <article class="card card-hover reveal b-2">
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
           </div>
@@ -143,7 +160,7 @@
              保存快照，机构更换时代理师集合随快照复制，历史每一次变更都可追溯。</p>
         </article>
 
-        <article class="card card-hover reveal">
+        <article class="card card-hover reveal b-2">
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
           </div>
@@ -217,8 +234,8 @@
                 </div>
               </div>
 
-              <div class="grid grid-2" style="margin-top:14px;">
-                <div class="card card-flat" style="padding:14px;">
+              <div class="grid grid-2 mt-14">
+                <div class="card card-flat card-compact">
                   <div class="tiny dim">📈 年费支出趋势</div>
                   <div class="bars" aria-hidden="true">
                     <span style="height:38%"></span><span style="height:52%"></span><span style="height:44%"></span>
@@ -227,7 +244,7 @@
                     <span style="height:90%" class="is-peak"></span><span style="height:76%"></span><span style="height:94%" class="is-peak"></span>
                   </div>
                 </div>
-                <div class="card card-flat" style="padding:14px;">
+                <div class="card card-flat card-compact">
                   <div class="tiny dim">📅 未来到期专利分布</div>
                   <div class="bars" aria-hidden="true">
                     <span style="height:30%"></span><span style="height:48%"></span><span style="height:72%" class="is-peak"></span>
@@ -303,7 +320,7 @@
         </div>
       </div>
 
-      <p class="tiny dim reveal" style="margin-top:18px;">
+      <p class="tiny dim reveal mt-18">
         以上为按软件实际布局绘制的界面示意（非屏幕截图），其中的申请号与数据均为示例。
       </p>
     </div>
@@ -312,26 +329,26 @@
   <!-- ============================ 期限规则 ============================ -->
   <section class="section section-soft" id="deadline">
     <div class="container">
-      <div class="grid grid-1-2" style="align-items:start;gap:56px;">
+      <div class="grid grid-1-2 grid-spread">
         <div class="reveal">
           <div class="eyebrow">期限引擎</div>
-          <h2 style="font-size:clamp(24px,3vw,34px);letter-spacing:-0.03em;">算得对，比算得快更重要</h2>
-          <p class="lead" style="margin-top:20px;">
+          <h2 class="h2-sub">算得对，比算得快更重要</h2>
+          <p class="lead mt-20">
             期限算错一次，代价可能是一件专利。软件内置的期限引擎对齐修改后《专利法实施细则》
             （国务院令第 769 号，2024-01-20 施行），并把历史通知书的旧规则一并保留。
           </p>
-          <p class="muted" style="margin-top:18px;font-size:15px;">
+          <p class="muted mt-18 text-15">
             按通知书类型自动匹配期间：第一次审查意见通知书 4 个月、第二次及以后 2 个月、
             驳回决定 3 个月（复审请求）、复审决定书 3 个月（起诉）、办理登记手续 2 个月。
           </p>
-          <div class="btn-row" style="margin-top:28px;">
+          <div class="btn-row mt-28">
             <a class="btn btn-ghost" href="features.html#deadline">查看期限规则详解</a>
           </div>
         </div>
 
         <div class="card card-lg reveal">
           <div class="card-index">期限计算规则</div>
-          <ul class="check-list" style="margin-top:20px;">
+          <ul class="check-list mt-20">
             <li>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
               <span><strong>电子送达</strong>：2024-01-20 及以后发文的通知书，期限<strong>自发文日</strong>起算，不再适用「发文日 + 15 日推定收到」。</span>
@@ -393,32 +410,32 @@
   <!-- ============================ 数据与安全 ============================ -->
   <section class="section section-soft">
     <div class="container">
-      <div class="grid grid-2-1" style="gap:56px;align-items:start;">
+      <div class="grid grid-2-1 grid-spread">
         <div class="reveal">
           <div class="eyebrow">数据</div>
-          <h2 style="font-size:clamp(24px,3vw,34px);letter-spacing:-0.03em;">数据在你自己的机器上</h2>
-          <p class="lead" style="margin-top:20px;">
+          <h2 class="h2-sub">数据在你自己的机器上</h2>
+          <p class="lead mt-20">
             专利数据属于客户机密。软件把全部数据保存在本机，不需要也不依赖任何云端服务与服务器。
           </p>
-          <div class="grid grid-2" style="margin-top:34px;">
+          <div class="grid grid-2 mt-34">
             <div>
-              <h3 style="font-size:16px;">💾 一键备份与恢复</h3>
-              <p class="muted small" style="margin-top:10px;">在软件内一键生成整库备份；需要时从备份文件恢复，恢复前先展示备份内容。</p>
+              <h3 class="h3-sm"><svg class="h3-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v6H4zM4 14h16v6H4z"/><path d="M8 7h.01M8 17h.01"/></svg>一键备份与恢复</h3>
+              <p class="muted small mt-10">在软件内一键生成整库备份；需要时从备份文件恢复，恢复前先展示备份内容。</p>
             </div>
             <div>
-              <h3 style="font-size:16px;">📦 数据可移交</h3>
-              <p class="muted small" style="margin-top:10px;">把数据库文件交给同事接续使用，双击指针文件即可打开对应数据库。</p>
+              <h3 class="h3-sm"><svg class="h3-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8"/><path d="M2 4h20v4H2zM10 12h4"/></svg>数据可移交</h3>
+              <p class="muted small mt-10">数据库就是一个文件，交给同事后双击即可打开接续使用。</p>
             </div>
             <div>
-              <h3 style="font-size:16px;">🔄 旧库自动升级</h3>
-              <p class="muted small" style="margin-top:10px;">升级到新版本后打开旧数据库，缺失的内容会自动补齐，不需要手工改表。</p>
+              <h3 class="h3-sm"><svg class="h3-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4"/><path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg>旧库自动升级</h3>
+              <p class="muted small mt-10">升级到新版本后打开旧数据库，缺失的内容会自动补齐，不需要手工改表。</p>
             </div>
           </div>
         </div>
 
         <div class="card card-lg card-flat reveal">
           <div class="card-index">数据存放</div>
-          <div class="kv" style="margin-top:20px;">
+          <div class="kv mt-20">
             <div>
               <dt>存放位置</dt>
               <dd class="tiny">本机数据库文件，不上传</dd>
@@ -433,7 +450,7 @@
             </div>
             <div>
               <dt>移交方式</dt>
-              <dd class="tiny">数据库文件 + 指针文件，双击指针文件打开</dd>
+              <dd class="tiny">单个 .cnpatdb 数据库文件，双击打开</dd>
             </div>
             <div>
               <dt>联网行为</dt>
@@ -469,7 +486,7 @@
           <p>首次启动新建数据库或打开已有数据库文件，然后导入通知书、CPC 卷或历史数据。</p>
         </li>
       </ol>
-      <div class="btn-row center reveal" style="margin-top:36px;">
+      <div class="btn-row center reveal mt-36">
         <a class="btn btn-ghost" href="guide.html">阅读完整使用指南</a>
       </div>
     </div>
@@ -493,7 +510,7 @@
         <details>
           <summary>可以多人同时使用吗？</summary>
           <div class="faq-body">
-            <p>软件定位是单机使用：数据以一个本机数据库文件的形式存在，可以连同指针文件交给同事接续使用，
+            <p>软件定位是单机使用：数据以一个本机数据库文件（.cnpatdb）的形式存在，把这个文件交给同事即可接续使用，
                属于文件级交接，并不提供多用户并发协作。</p>
           </div>
         </details>
@@ -517,7 +534,7 @@
   </section>
 
   <!-- ============================ CTA ============================ -->
-  <section class="section" style="padding-top:0;">
+  <section class="section pt-0">
     <div class="container">
       <div class="cta reveal">
         <h2>现在就把台账搬到一处</h2>
@@ -577,6 +594,11 @@
       <span>© <span data-year>2026</span> 中国专利管理大师 · CnPatentManager</span>
       <span class="grow"></span>
       <span>v1.0.0 · Windows 桌面版</span>
+      <!-- 备案号位：本站在境外托管（GitHub Pages 美国节点），按现行规定无需工信部 ICP 备案，
+           因此保持注释状态——不要显示空号。将来若迁到国内服务器 / 对象存储并完成备案，
+           把下面一行取消注释，并把占位号换成实际备案号。
+      <span class="footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">XX省ICP备00000000号-1</a></span>
+      -->
     </div>
   </div>
 </footer>

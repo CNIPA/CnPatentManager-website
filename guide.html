@@ -5,14 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>使用指南 · 中国专利管理大师</title>
 <meta name="description" content="中国专利管理大师（CnPatentManager）使用指南：环境准备、安装包与便携目录、建库与挂接数据库、数据导入、日常使用、期限与年费、备份恢复与常见问题。">
+<link rel="canonical" href="https://cnpatentmanager.cn/guide.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="中国专利管理大师">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="使用指南 · 中国专利管理大师">
+<meta property="og:description" content="按实际操作顺序排列：准备环境与安装、建库、导入数据、日常使用、期限年费、备份恢复与常见问题。">
+<meta property="og:url" content="https://cnpatentmanager.cn/guide.html">
+<meta property="og:image" content="https://cnpatentmanager.cn/assets/img/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="中国专利管理大师 · 使用指南">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#ffffff">
-<link rel="icon" href="assets/img/logo.ico">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e0e10" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="assets/img/logo.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/img/logo-mark.png">
 <link rel="stylesheet" href="assets/css/style.css">
 <script src="assets/js/theme-init.js"></script>
 <script src="assets/js/main.js" defer></script>
 </head>
 <body>
+
+<a class="skip-link" href="#main">跳到主要内容</a>
 
 <!-- ============================ 公告条 ============================ -->
 <div class="notice-bar">
@@ -27,7 +43,7 @@
 <header class="nav" id="nav">
   <div class="container nav-inner">
     <a class="brand" href="index.html">
-      <img src="assets/img/logo-mark.png" alt="中国专利管理大师">
+      <img src="assets/img/logo-mark.png" alt="">
       <span>中国专利管理大师</span>
       <span class="brand-sub">CnPatentManager</span>
     </a>
@@ -39,14 +55,15 @@
     </nav>
     <div class="nav-right">
       <a class="btn btn-primary btn-sm" href="download.html">下载</a>
-      <button class="icon-btn nav-toggle" id="navToggle" aria-label="展开菜单">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <button class="icon-btn nav-toggle" id="navToggle" type="button"
+              aria-label="展开菜单" aria-expanded="false" aria-controls="navLinks">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </div>
   </div>
 </header>
 
-<main>
+<main id="main">
 
   <!-- ============================ 页面头部 ============================ -->
   <section class="page-head">
@@ -109,30 +126,31 @@
              默认安装目录是 <span class="mono tiny">%LOCALAPPDATA%\Programs\CnPatentManager</span>，
              位于当前用户目录下，不需要管理员权限。向导过程中会检测 .NET 8 Desktop Runtime 与
              SQL Server LocalDB，缺失时给出「一键下载并安装」入口（需联网，安装时会有系统权限确认）。</p>
-          <p>安装会在开始菜单创建程序与卸载快捷方式，并注册 <span class="mono tiny">.cpam</span> 文件关联 ——
-             之后双击数据库指针文件就能直接打开；是否创建桌面快捷方式可以在向导中勾选。</p>
+          <p>安装会在开始菜单创建程序与卸载快捷方式，并注册 <span class="mono tiny">.cnpatdb</span> 文件关联 ——
+             之后双击 <span class="mono tiny">.cnpatdb</span> 数据库文件就能直接打开；是否创建桌面快捷方式可以在向导中勾选。</p>
 
           <h3>方式二：免安装（便携目录）</h3>
           <p>把维护者提供的程序目录整体复制到目标机器，双击其中的
-             <span class="mono tiny">CnPatentManager.exe</span> 即可运行，不写注册表、不改动系统设置。
+             <span class="mono tiny">CnPatentManager.exe</span> 即可运行，不需要安装、不需要管理员权限，也不改动系统设置。
              目标机器同样需要预先安装 .NET 8 Desktop Runtime 与 LocalDB。</p>
-          <div class="callout"><strong>便携方式不注册文件关联。</strong>
-             指针文件的关联由安装包写入；使用便携目录时，
-             请在数据库选择窗口中用「打开数据库文件 (.mdf)…」挂接数据库。</div>
+          <div class="callout"><strong>便携方式也会登记 .cnpatdb 文件关联。</strong>
+             程序启动时会在当前用户注册表里写入这一项关联（除此之外不写注册表），
+             因此双击 <span class="mono tiny">.cnpatdb</span> 数据库文件同样能直接打开；删掉程序目录后该关联会失效，
+             可在 Windows「默认应用」里清除。</div>
 
           <h2 id="database">三、建库或挂接数据库</h2>
           <p>第一次启动会先出现数据库选择窗口，按实际情况选一种：</p>
           <ol>
             <li><span><strong>新建数据库</strong>：在本机数据库引擎上创建一个空库，结构由软件自动建立。</span></li>
-            <li><span><strong>打开数据库文件 (.mdf)</strong>：挂接别人交付或从旧机器带过来的数据库文件。</span></li>
-            <li><span><strong>打开 .cpam 指针文件</strong>：安装了软件时，直接双击 <span class="mono tiny">.cpam</span> 即可。</span></li>
+            <li><span><strong>打开数据库文件 (.cnpatdb)</strong>：挂接别人交付或从旧机器带过来的数据库文件（旧版 <span class="mono tiny">.mdf</span> 文件同样可以选）。</span></li>
+            <li><span><strong>双击 .cnpatdb 文件</strong>：安装了软件时，直接双击数据库文件即可打开。</span></li>
           </ol>
           <p>软件在创建或打开数据库时会自动建立所需结构，并把它补齐到与程序一致的版本。</p>
           <div class="callout"><strong>旧库不需要手工改表。</strong>把旧版本的数据库交给新版本程序打开，
             软件会自动补齐缺失的内容。升级前建议先做一次备份（见第七节）。</div>
-          <p>挂接 <span class="mono tiny">.mdf</span> 时，把 <span class="mono tiny">.mdf</span> 与同名的
-             <span class="mono tiny">.cpam</span> 放在同一目录最省事；只拿到 <span class="mono tiny">.mdf</span>
-             也能用「打开数据库文件 (.mdf)…」指定。</p>
+          <p>数据库就是一个文件（<span class="mono tiny">.cnpatdb</span>）：拿到它就够了，
+             用「打开数据库文件 (.cnpatdb)…」指定，或者直接双击。
+             旧版交来的 <span class="mono tiny">.mdf</span> 文件同样支持挂接（日志文件缺失时会自动重建）。</p>
 
           <h2 id="import">四、导入数据</h2>
           <p>数据入口按来源分为四类，可以分批导入，互不影响。</p>
@@ -196,10 +214,12 @@
             <li><span>名义届满日不是中国工作日 → <strong>顺延</strong>至其后的第一个工作日。</span></li>
           </ul>
           <p>通知书类型对应的期间：</p>
-          <div class="card" style="padding:8px 8px;">
+          <div class="card card-table">
             <table class="spec-table">
+              <thead>
+                <tr><th>通知书类型</th><th>对应的期间</th></tr>
+              </thead>
               <tbody>
-                <tr><th>通知书类型</th><td>对应的期间</td></tr>
                 <tr><th>第一次审查意见通知书</th><td>4 个月</td></tr>
                 <tr><th>第二次及以后审查意见通知书</th><td>2 个月</td></tr>
                 <tr><th>驳回决定</th><td>3 个月（复审请求）</td></tr>
@@ -223,9 +243,9 @@
                 再由你指定恢复到哪个位置。</span></li>
           </ul>
           <p>需要把数据库交给同事时，可在数据库选择窗口选中库后「导出为文件…」：
-             软件会复制出数据库文件，同时生成同名的指针文件。
-             把这<strong>两个文件</strong>放在同一目录一起发出，
-             对方双击指针文件即可打开，或用「打开数据库文件 (.mdf)…」挂接。</p>
+             软件会复制出<strong>一个 .cnpatdb 数据库文件</strong>（本机数据库不受影响）。
+             把这个文件发给对方，对方双击即可打开；
+             对方机器上缺少事务日志时 SQL Server 会自动重建，不需要另外传别的文件。</p>
           <div class="callout"><strong>换机器或升级软件之前先备份。</strong>
              备份生成的是独立文件，可以随移动存储一起带走；
              恢复时请确认目标位置没有同名的库正在使用。</div>
@@ -245,7 +265,7 @@
               <div class="faq-body">
                 <p>软件定位是单机使用：数据以一个本机数据库文件的形式存在，通过文件交接共享，
                    不提供多用户并发写入。多人协作时，建议由一个人维护主库，
-                   需要交给他人时导出数据库文件与同名的指针文件。</p>
+                   需要交给他人时导出这个 .cnpatdb 数据库文件即可。</p>
               </div>
             </details>
             <details>
@@ -349,6 +369,11 @@
       <span>© <span data-year>2026</span> 中国专利管理大师 · CnPatentManager</span>
       <span class="grow"></span>
       <span>v1.0.0 · Windows 桌面版</span>
+      <!-- 备案号位：本站在境外托管（GitHub Pages 美国节点），按现行规定无需工信部 ICP 备案，
+           因此保持注释状态——不要显示空号。将来若迁到国内服务器 / 对象存储并完成备案，
+           把下面一行取消注释，并把占位号换成实际备案号。
+      <span class="footer-icp"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">XX省ICP备00000000号-1</a></span>
+      -->
     </div>
   </div>
 </footer>

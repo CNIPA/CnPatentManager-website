@@ -64,21 +64,36 @@
     window.addEventListener('scroll', onScroll, { passive: true });
 
     var toggle = document.getElementById('navToggle');
+    // 开合状态同时写进 class 与 aria：键盘和读屏用户才拿得到当前状态
+    var setMenu = function (open) {
+      nav.classList.toggle('is-open', open);
+      if (!toggle) return;
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? '收起菜单' : '展开菜单');
+    };
     if (toggle) {
+      setMenu(false);
       toggle.addEventListener('click', function (e) {
         e.stopPropagation();
-        nav.classList.toggle('is-open');
+        setMenu(!nav.classList.contains('is-open'));
       });
     }
     nav.addEventListener('click', function (e) {
-      if (e.target.closest('a')) nav.classList.remove('is-open');
+      if (e.target.closest('a')) setMenu(false);
     });
     document.addEventListener('click', function (e) {
-      if (!nav.contains(e.target)) nav.classList.remove('is-open');
+      if (!nav.contains(e.target)) setMenu(false);
     });
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') nav.classList.remove('is-open');
+      if (e.key === 'Escape') setMenu(false);
     });
+    // 拉宽到桌面断点之后，折叠菜单要收起来，否则状态与视觉不一致
+    if (window.matchMedia) {
+      var mqNav = window.matchMedia('(min-width: 901px)');
+      var onNavBp = function (e) { if (e.matches) setMenu(false); };
+      if (mqNav.addEventListener) mqNav.addEventListener('change', onNavBp);
+      else if (mqNav.addListener) mqNav.addListener(onNavBp);
+    }
   }
 
   /* ---------- 当前页高亮 ---------- */
@@ -104,6 +119,28 @@
       }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
       Array.prototype.forEach.call(reveals, function (el) { io.observe(el); });
     }
+  }
+
+  /* ---------- 卡片聚光 ----------
+     只写 --mx / --my 两个坐标，高光的形状与颜色全在 CSS 里。
+     仅在真正有指针（鼠标）的设备上挂监听，触屏不做无谓的重排。 */
+  var spotCards = document.querySelectorAll('.card-hover');
+  if (spotCards.length && window.matchMedia &&
+      window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    Array.prototype.forEach.call(spotCards, function (card) {
+      var raf = 0;
+      var last = null;
+      card.addEventListener('pointermove', function (e) {
+        last = e;
+        if (raf) return;
+        raf = requestAnimationFrame(function () {
+          raf = 0;
+          var r = card.getBoundingClientRect();
+          card.style.setProperty('--mx', (last.clientX - r.left) + 'px');
+          card.style.setProperty('--my', (last.clientY - r.top) + 'px');
+        });
+      });
+    });
   }
 
   /* ---------- 代码块复制 ---------- */
