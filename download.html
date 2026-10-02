@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>下载 · 中国专利管理大师</title>
-<meta name="description" content="中国专利管理大师（CnPatentManager）下载与部署：运行环境要求、安装包与便携目录两种交付形式、安装后行为与首次使用三步。">
+<meta name="description" content="中国专利管理大师（CnPatentManager）下载：安装包直接下载，含运行环境要求、安装包与便携目录两种交付形式、安装后行为与首次使用三步。">
 <link rel="canonical" href="https://cnpatentmanager.cn/download.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="中国专利管理大师">
@@ -74,9 +74,19 @@
         <span>下载</span>
       </nav>
       <h1>下载</h1>
-      <p>软件以两种形式交付：安装包，或免安装的便携目录。本页说明运行环境要求、
-         两种形式各自的安装与使用方式，以及首次使用的三步。</p>
+      <p>安装包可在本页直接下载。软件以两种形式交付：安装包，或免安装的便携目录；
+         本页说明运行环境要求、两种形式各自的安装与使用方式，以及首次使用的三步。</p>
       <div class="btn-row reveal mt-30">
+        <a class="btn btn-primary btn-lg" href="downloads/Setup_CnPatentManager.exe" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
+          下载安装包
+        </a>
+        <a class="btn btn-ghost btn-lg" href="#requirements">先看系统要求</a>
+      </div>
+      <p class="small muted mt-14">
+        版本 1.0.0 · 安装包 11.9 MB · Windows 10 / 11（x64）· 按当前用户安装，不需要管理员权限
+      </p>
+      <div class="btn-row reveal mt-24">
         <a class="pill" href="#requirements">系统要求</a>
         <a class="pill" href="#get">获取方式</a>
         <a class="pill" href="#publish">便携使用</a>
@@ -115,7 +125,7 @@
       <div class="section-head reveal">
         <div class="eyebrow">获取方式</div>
         <h2>两种交付形式</h2>
-        <p>安装包适合分发给最终用户；便携目录适合快速试用，或在多台机器之间搬移。</p>
+        <p>安装包可在本页直接下载；便携目录不必另外下载，安装一次后把程序目录整体复制过去即可。</p>
       </div>
 
       <div class="grid grid-2">
@@ -137,6 +147,13 @@
               <span>向导检测 .NET 8 Desktop Runtime 与 SQL Server LocalDB，缺失时提供一键下载入口。</span>
             </li>
           </ul>
+          <div class="btn-row mt-24">
+            <a class="btn btn-primary" href="downloads/Setup_CnPatentManager.exe" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
+              下载安装包
+            </a>
+          </div>
+          <p class="small muted mt-14">当前版本 1.0.0 · 11.9 MB · 最近更新 2026-10-02。</p>
         </div>
 
         <div class="card card-lg reveal">
@@ -158,12 +175,17 @@
               <span>打开数据库用「打开数据库文件 (.cnpatdb)…」，或双击已有关联的 <span class="mono tiny">.cnpatdb</span>。</span>
             </li>
           </ul>
+          <p class="small muted mt-18">
+            本站不另外提供便携压缩包：安装目录本身就是完整的程序目录，
+            整个复制到目标机器即可便携使用，详见下面的「便携使用」。
+          </p>
         </div>
       </div>
 
       <div class="callout reveal mt-24">
-        <strong>本页不提供下载链接。</strong>
-        需要安装包或便携目录，请向软件的维护者索取；两者使用同一份发布版本。
+        <strong>安装包没有数字签名，首次运行 Windows 可能拦一下。</strong>
+        如果出现「Windows 已保护你的电脑」提示，点「更多信息」→「仍要运行」即可继续安装；
+        请只从本页下载，不要用来路不明的安装包。
       </div>
     </div>
   </section>
@@ -182,7 +204,9 @@
           <li>
             <div class="step-num">STEP 01</div>
             <h3>复制</h3>
-            <p>把程序目录整体复制到目标机器（U 盘、共享目录、压缩包都可以）。</p>
+            <p>把程序目录整体复制到目标机器（U 盘、共享目录、压缩包都可以）。
+               安装目录 <span class="mono tiny">%LOCALAPPDATA%\Programs\CnPatentManager</span>
+               本身就是完整的程序目录，复制它即可。</p>
           </li>
           <li>
             <div class="step-num">STEP 02</div>
