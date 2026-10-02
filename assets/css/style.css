@@ -1353,7 +1353,9 @@ a.card:hover h3 { color: var(--accent-text); }
 /* --------------------------------------------------------------------------
    15. 滚动入场动效
    -------------------------------------------------------------------------- */
-/* 仅在脚本可用时隐藏初始状态，避免 JS 失效导致内容不可见 */
+/* 隐藏初始状态由 <head> 里同步执行的 theme-init.js 打上的 html.js 控制 ——
+   必须同步，否则首屏会先画出内容再被隐藏，出现闪烁。
+   脚本异常时由 theme-init.js 注册的 error 兜底把所有 .reveal 显示出来。 */
 .js .reveal {
   opacity: 0;
   transform: translateY(16px);
@@ -1371,7 +1373,14 @@ a.card:hover h3 { color: var(--accent-text); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  /* 必须连 .js .reveal 一起写：只写 .reveal 会输给上面那条（0,2,0 > 0,1,0），
+     「减少动效」就形同虚设，内容仍要靠 observer 才现身。 */
+  .reveal,
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
   * , *::before, *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;

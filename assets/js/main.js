@@ -109,7 +109,15 @@
     if (!('IntersectionObserver' in window)) {
       Array.prototype.forEach.call(reveals, function (el) { el.classList.add('is-in'); });
     } else {
+      // 安全网：某些环境（无头浏览器、部分 App 内置 WebView）里
+      // IntersectionObserver 可能一次都不回调，那样整页内容会永远停在
+      // opacity:0。这里挂一个兜底定时器，observer 只要活着回调一次就取消它。
+      var revealFallback = window.setTimeout(function () {
+        Array.prototype.forEach.call(reveals, function (el) { el.classList.add('is-in'); });
+      }, 2500);
+
       var io = new IntersectionObserver(function (entries) {
+        window.clearTimeout(revealFallback);
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add('is-in');

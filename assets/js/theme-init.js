@@ -17,7 +17,17 @@
   var ACCENTS = ['blue', 'green', 'orange', 'ink'];
 
   var root = document.documentElement;
+  // 同步打上 js：CSS 里的 .js .reveal 靠它在首屏绘制前就把入场元素隐藏起来，
+  // 若改到 main.js（defer）里加，首屏会先画出内容再隐藏，出现闪烁。
   root.classList.add('js');
+
+  // 兜底：.js 一旦打上，任何脚本出错或资源加载失败都会让 .reveal 永久停在
+  // opacity:0。这里用捕获阶段的 error 事件（能拿到 <script> 的资源加载失败）
+  // 把内容全部放开，宁可没有入场动效，也不能让页面空白。
+  window.addEventListener('error', function () {
+    var els = document.querySelectorAll('.reveal');
+    for (var i = 0; i < els.length; i++) els[i].classList.add('is-in');
+  }, true);
 
   var storedTheme = null;
   var storedAccent = null;
