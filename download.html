@@ -74,8 +74,8 @@
         <span>下载</span>
       </nav>
       <h1>下载</h1>
-      <p>安装包可在本页直接下载。本页说明运行环境要求、安装包会做哪些事，
-         以及装好之后如何建库、导入数据。</p>
+      <p>安装包就是全部内容：一个 exe，双击后按向导装完即可使用。
+         下面列出运行环境要求、安装包会做哪些事，以及装好之后如何建库、导入数据。</p>
       <div class="btn-row reveal mt-30">
         <a class="btn btn-primary btn-lg" href="downloads/Setup_CnPatentManager.exe" download>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
@@ -84,11 +84,12 @@
         <a class="btn btn-ghost btn-lg" href="#requirements">先看系统要求</a>
       </div>
       <p class="small muted mt-14">
-        版本 1.0.0 · 安装包 11.9 MB · Windows 10 / 11（x64）· 按当前用户安装，不需要管理员权限
+        版本 1.0.0 · Setup_CnPatentManager.exe · 11.9 MB · 最近更新 2026-10-02
       </p>
       <div class="btn-row reveal mt-24">
         <a class="pill" href="#requirements">系统要求</a>
-        <a class="pill" href="#get">获取方式</a>
+        <a class="pill" href="#after-install">安装之后</a>
+        <a class="pill" href="#first-run">首次使用</a>
       </div>
     </div>
   </section>
@@ -118,52 +119,8 @@
     </div>
   </section>
 
-  <!-- ============================ 获取方式 ============================ -->
-  <section class="section section-soft" id="get">
-    <div class="container container-narrow">
-      <div class="section-head reveal">
-        <div class="eyebrow">获取方式</div>
-        <h2>下载并安装</h2>
-        <p>安装包就是全部内容：一个 exe，双击后按向导装完即可使用。</p>
-      </div>
-
-      <div class="card card-lg reveal">
-        <div class="card-index">Setup_CnPatentManager.exe</div>
-        <h3 class="mt-14">安装包</h3>
-        <p>双击后按向导安装到当前用户目录，不需要管理员权限。</p>
-        <ul class="check-list mt-18">
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            <span>注册 <span class="mono tiny">.cnpatdb</span> 文件关联，双击数据库文件即可打开。</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            <span>在开始菜单创建程序与卸载快捷方式，桌面快捷方式可选。</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            <span>向导检测 .NET 8 Desktop Runtime 与 SQL Server LocalDB，缺失时提供一键下载入口。</span>
-          </li>
-        </ul>
-        <div class="btn-row mt-24">
-          <a class="btn btn-primary" href="downloads/Setup_CnPatentManager.exe" download>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
-            下载安装包
-          </a>
-        </div>
-        <p class="small muted mt-14">当前版本 1.0.0 · 11.9 MB · 最近更新 2026-10-02。</p>
-      </div>
-
-      <div class="callout reveal mt-24">
-        <strong>安装包没有数字签名，首次运行 Windows 可能拦一下。</strong>
-        如果出现「Windows 已保护你的电脑」提示，点「更多信息」→「仍要运行」即可继续安装；
-        请只从本页下载，不要用来路不明的安装包。
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================ 安装后行为 ============================ -->
-  <section class="section section-soft">
+  <!-- ============================ 安装之后 ============================ -->
+  <section class="section section-soft" id="after-install">
     <div class="container">
       <div class="section-head reveal">
         <div class="eyebrow">安装之后</div>
@@ -196,11 +153,17 @@
           </p>
         </div>
       </div>
+
+      <div class="callout reveal mt-24">
+        <strong>安装包没有数字签名，首次运行 Windows 可能拦一下。</strong>
+        如果出现「Windows 已保护你的电脑」提示，点「更多信息」→「仍要运行」即可继续安装；
+        请只从本页下载，不要用来路不明的安装包。
+      </div>
     </div>
   </section>
 
   <!-- ============================ 首次使用三步 ============================ -->
-  <section class="section">
+  <section class="section" id="first-run">
     <div class="container">
       <div class="section-head center reveal">
         <div class="eyebrow">首次使用</div>
@@ -285,7 +248,7 @@
         <ul>
           <li><a href="download.html">下载与部署</a></li>
           <li><a href="download.html#requirements">系统要求</a></li>
-          <li><a href="download.html#get">获取方式</a></li>
+          <li><a href="download.html#first-run">首次使用</a></li>
           <li><a href="index.html#screens">界面示意</a></li>
         </ul>
       </div>
