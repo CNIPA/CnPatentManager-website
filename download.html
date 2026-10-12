@@ -32,7 +32,7 @@
 
 <!-- ============================ 公告条 ============================ -->
 <div class="notice-bar">
-  <span class="pill pill-soft"><span class="dot"></span>v1.0.0</span>
+  <span class="pill pill-soft"><span class="dot"></span>v1.0.1</span>
   <span><strong>内置 2024-01-20 施行的期限新规</strong>：电子送达自发文日起算，名义届满日遇非工作日顺延。</span>
   <a class="link-arrow" href="guide.html#deadline">了解规则
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -84,7 +84,7 @@
         <a class="btn btn-ghost btn-lg" href="#requirements">先看系统要求</a>
       </div>
       <p class="small muted mt-14">
-        版本 1.0.0 · Setup_CnPatentManager.exe · 11.9 MB · 最近更新 2026-10-11
+        版本 1.0.1 · Setup_CnPatentManager.exe · 11.9 MB · 最近更新 2026-10-12
       </p>
       <div class="btn-row reveal mt-24">
         <a class="pill" href="#requirements">系统要求</a>
@@ -108,7 +108,7 @@
           <tbody>
             <tr><th>操作系统</th><td>Windows 10 / 11（<strong>x64</strong>）</td></tr>
             <tr><th>运行组件</th><td>.NET 8 Desktop Runtime（x64），安装向导会检测并给出下载入口</td></tr>
-            <tr><th>数据库</th><td>SQL Server LocalDB 2019 或更高版本，安装向导会一并检测与提示</td></tr>
+            <tr><th>数据库</th><td>SQL Server LocalDB <strong>2019（15.0）或更高版本</strong>；向导会连版本一起检查，装了更老的版本也会被判定为不满足</td></tr>
             <tr><th>旧库升级</th><td>打开旧版本数据库时自动补齐所需内容，不需要手工改表</td></tr>
             <tr><th>安装位置</th><td>默认为 <span class="mono tiny">%LOCALAPPDATA%\Programs\CnPatentManager</span>，当前用户目录，不需要管理员权限</td></tr>
             <tr><th>磁盘占用</th><td>取决于数据量 —— 除程序本体外，还有本机数据库文件与备份文件，随专利与费用记录的规模增长</td></tr>
@@ -135,7 +135,7 @@
               <tr><th>文件关联</th><td>双击 .cnpatdb 数据库文件即可直接打开对应数据库</td></tr>
               <tr><th>快捷方式</th><td>开始菜单创建程序与卸载入口；桌面快捷方式可在向导中勾选</td></tr>
               <tr><th>权限</th><td>按当前用户安装，不需要管理员权限（前置组件安装时会有系统权限确认）</td></tr>
-              <tr><th>前置检测</th><td>检测 .NET 8 Desktop Runtime（x64）与 SQL Server LocalDB，缺失时给出下载入口</td></tr>
+              <tr><th>前置检测</th><td>检测 .NET 8 Desktop Runtime（x64），以及 SQL Server LocalDB 的<strong>安装与版本</strong>；不满足时给出下载入口</td></tr>
             </tbody>
           </table>
         </div>
@@ -147,6 +147,10 @@
           <p>.NET 8 Desktop Runtime 与 SQL Server LocalDB 都是必需项：缺少前者的程序无法启动，
              缺少后者的数据库无法创建。向导会检测并给出「一键下载并安装」按钮（需联网），
              也可以提前手动装好再运行安装程序。</p>
+          <p class="small muted mt-14">
+            LocalDB 不只是「装了就行」：向导会读取已安装的版本号，<strong>低于 2019（15.0）的会被判为不满足</strong>
+            并给出上面的下载按钮 —— 老版本引擎跑不了程序建库时用的 T-SQL 语法。
+          </p>
           <p class="small muted mt-14">
             LocalDB 随 SQL Server Express 安装包分发，安装时勾选 LocalDB 组件即可；
             详细步骤见<a href="guide.html#prepare">使用指南 · 准备环境</a>。
@@ -256,7 +260,7 @@
     <div class="footer-bottom">
       <span>© <span data-year>2026</span> 中国专利管理大师 · CnPatentManager</span>
       <span class="grow"></span>
-      <span>v1.0.0 · Windows 桌面版</span>
+      <span>v1.0.1 · Windows 桌面版</span>
       <!-- 备案号位：本站在境外托管（GitHub Pages 美国节点），按现行规定无需工信部 ICP 备案，
            因此保持注释状态——不要显示空号。将来若迁到国内服务器 / 对象存储并完成备案，
            把下面一行取消注释，并把占位号换成实际备案号。
