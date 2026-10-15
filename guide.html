@@ -32,7 +32,7 @@
 
 <!-- ============================ 公告条 ============================ -->
 <div class="notice-bar">
-  <span class="pill pill-soft"><span class="dot"></span>v1.0.2</span>
+  <span class="pill pill-soft"><span class="dot"></span>v1.0.3</span>
   <span><strong>内置 2024-01-20 施行的期限新规</strong>：电子送达自发文日起算，名义届满日遇非工作日顺延。</span>
   <a class="link-arrow" href="guide.html#deadline">了解规则
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -103,7 +103,7 @@
           <h2 id="prepare">一、准备环境</h2>
           <p>中国专利管理大师是一款 Windows 桌面程序，运行在 Windows 10 / 11（x64）上。
              在安装软件本身之前，机器上需要先有两项前置组件：
-             .NET 8 Desktop Runtime（x64）与 SQL Server LocalDB 2019 或更高版本。</p>
+             .NET 8 Desktop Runtime（x64）与 SQL Server LocalDB 2012 或更高版本（推荐 2019 及以上）。</p>
 
           <h3>.NET 8 桌面运行时</h3>
           <p>从 .NET 官方下载页获取「.NET Desktop Runtime 8.x」的 x64 安装包并安装：
@@ -117,14 +117,14 @@
           <div class="callout"><strong>安装向导会自动检测这两项前置组件。</strong>
             缺少其中任何一项时，向导会给出「一键下载并安装」入口（需联网，安装时会有系统权限确认）；
             也可以先手动装好组件，再运行安装包。
-            LocalDB <strong>会连版本一起检查</strong>：低于 2019（15.0）的老版本同样按「不满足」处理，
-            因为程序建库时用到的 T-SQL 语法老引擎不认。</div>
+            LocalDB <strong>会连版本一起检查</strong>：低于 2012（11.0）的老版本按「不满足」处理；
+            2012 / 2014 这类旧版本可以正常使用（程序不依赖新语法），换新机器时再考虑装 2019 及以上。</div>
 
           <h2 id="install">二、安装</h2>
           <p>运行 <span class="mono tiny">Setup_CnPatentManager.exe</span>，按向导完成安装。
              默认安装目录是 <span class="mono tiny">%LOCALAPPDATA%\Programs\CnPatentManager</span>，
              位于当前用户目录下，不需要管理员权限。向导过程中会检测 .NET 8 Desktop Runtime 与
-             SQL Server LocalDB（<strong>含版本</strong>，需 2019 / 15.0 或更高），
+             SQL Server LocalDB（<strong>含版本</strong>，需 2012 / 11.0 或更高），
              不满足时给出「一键下载并安装」入口（需联网，安装时会有系统权限确认）。</p>
           <p>安装会在开始菜单创建程序与卸载快捷方式，并注册 <span class="mono tiny">.cnpatdb</span> 文件关联 ——
              之后双击 <span class="mono tiny">.cnpatdb</span> 数据库文件就能直接打开；是否创建桌面快捷方式可以在向导中勾选。</p>
@@ -359,7 +359,7 @@
     <div class="footer-bottom">
       <span>© <span data-year>2026</span> 中国专利管理大师 · CnPatentManager</span>
       <span class="grow"></span>
-      <span>v1.0.2 · Windows 桌面版</span>
+      <span>v1.0.3 · Windows 桌面版</span>
       <!-- 备案号位：本站在境外托管（GitHub Pages 美国节点），按现行规定无需工信部 ICP 备案，
            因此保持注释状态——不要显示空号。将来若迁到国内服务器 / 对象存储并完成备案，
            把下面一行取消注释，并把占位号换成实际备案号。
