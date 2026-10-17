@@ -32,7 +32,7 @@
 
 <!-- ============================ 公告条 ============================ -->
 <div class="notice-bar">
-  <span class="pill pill-soft"><span class="dot"></span>v1.0.3</span>
+  <span class="pill pill-soft"><span class="dot"></span>v1.0.4</span>
   <span><strong>内置 2024-01-20 施行的期限新规</strong>：电子送达自发文日起算，名义届满日遇非工作日顺延。</span>
   <a class="link-arrow" href="guide.html#deadline">了解规则
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -92,9 +92,10 @@
           <a href="#database">三、建库或挂接数据库</a>
           <a href="#import">四、导入数据</a>
           <a href="#daily">五、日常使用</a>
-          <a href="#deadline">六、期限与年费</a>
-          <a href="#backup">七、备份、恢复与移交</a>
-          <a href="#faq">八、常见问题</a>
+        <a href="#search">六、搜索、预警与留痕</a>
+          <a href="#deadline">七、期限与年费</a>
+          <a href="#backup">八、备份、恢复与移交</a>
+          <a href="#faq">九、常见问题</a>
         </aside>
 
         <!-- 正文 -->
@@ -195,7 +196,14 @@
              <span class="mono tiny">.xlsx</span> 文件，列中可以带上<strong>当前权利人</strong>、
              <strong>当前代理机构</strong>与<strong>当前代理师</strong>。</p>
 
-          <h2 id="deadline">六、期限与年费</h2>
+          <h2 id="search">六、搜索、预警与留痕</h2>
+<p>三处入口能省掉大部分翻表的时间：</p>
+<ul class="check-list mt-14">
+  <li><strong>全库搜索</strong>：窗口右上角输入申请号、专利名称、客户名、票据号码或订单号，回车即可跨表检索；双击结果跳转到那一条。</li>
+  <li><strong>预警中心</strong>：左侧导航第二项，把临期年费与通知书期限按"已逾期 / 7 天 / 15 天 / 30 天"分档列出，数字即待办条数。</li>
+  <li><strong>审计日志</strong>：导航底部的「审计日志」记录每次修改的字段与旧值/新值，客户问"这条是谁改的"时可直接查，也能导出 Excel。</li>
+</ul>
+<h2 id="deadline">七、期限与年费</h2>
           <p>期限由统一的规则引擎计算，规则如下：</p>
           <ul>
             <li><span><strong>起算点分界</strong>：发文日为 2024-01-20（修改后《专利法实施细则》，国务院令第 769 号）
@@ -226,7 +234,7 @@
             机器离线时会退回「仅按周末」判断，因此跨春节、国庆等长假期的期限，
             建议联网更新节假日数据后再复核一次。</div>
 
-          <h2 id="backup">七、备份、恢复与移交</h2>
+          <h2 id="backup">八、备份、恢复与移交</h2>
           <p>数据库选择窗口里有两个固定操作：</p>
           <ul>
             <li><span><strong>💾 备份…</strong>：生成一份独立的备份文件，不必停用软件。</span></li>
@@ -241,7 +249,7 @@
              备份生成的是独立文件，可以随移动存储一起带走；
              恢复时请确认目标位置没有同名的库正在使用。</div>
 
-          <h2 id="faq">八、常见问题</h2>
+          <h2 id="faq">九、常见问题</h2>
           <div class="faq">
             <details>
               <summary>扫描件 PDF 能识别吗？</summary>
@@ -359,7 +367,7 @@
     <div class="footer-bottom">
       <span>© <span data-year>2026</span> 中国专利管理大师 · CnPatentManager</span>
       <span class="grow"></span>
-      <span>v1.0.3 · Windows 桌面版</span>
+      <span>v1.0.4 · Windows 桌面版</span>
       <!-- 备案号位：本站在境外托管（GitHub Pages 美国节点），按现行规定无需工信部 ICP 备案，
            因此保持注释状态——不要显示空号。将来若迁到国内服务器 / 对象存储并完成备案，
            把下面一行取消注释，并把占位号换成实际备案号。

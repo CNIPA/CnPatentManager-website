@@ -1,6 +1,6 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "downloadUrl": "https://cnpatentmanager.cn/downloads/Setup_CnPatentManager.exe",
-  "notes": "",
+  "notes": "新增预警中心（临期年费、恢复费、通知书答复期限按 30/15/7 天分档）、全库搜索（申请号/专利名称/客户名/票据号/订单号）、审计日志（字段级记录谁在什么时候把什么改成了什么）、每天自动备份（保留最近 30 份，可一键用最近备份恢复）、首次使用引导；并修正深色主题配色、对话框统一自绘标题栏、双屏不同缩放下的最大化显示。",
   "_readme": "软件启动时会优先读这个文件判断有没有新版本（见主仓库 Services/UpdateChecker.cs）。发版时必须与页面上的 v1.0.x 一起改这里的 version，并把 notes 写成本次更新说明（会显示在『发现新版本』弹窗里）。没有这个文件时程序会退回去解析 download.html 里的版本号。"
 }
