@@ -1,0 +1,6 @@
+{
+  "version": "1.0.3",
+  "downloadUrl": "https://cnpatentmanager.cn/downloads/Setup_CnPatentManager.exe",
+  "notes": "",
+  "_readme": "软件启动时会优先读这个文件判断有没有新版本（见主仓库 Services/UpdateChecker.cs）。发版时必须与页面上的 v1.0.x 一起改这里的 version，并把 notes 写成本次更新说明（会显示在『发现新版本』弹窗里）。没有这个文件时程序会退回去解析 download.html 里的版本号。"
+}
