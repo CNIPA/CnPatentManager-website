@@ -43,14 +43,19 @@ git push
 指向本仓库的 `downloads/`，所以编译完的安装包会直接落在这里，再连同页面一起提交推送。
 发版要同步的版本/大小/日期信息见主仓库的 `installer/README.md`。
 
-### 发版时要改的三处版本号
+### 发版时要改的地方
 
-1. 各页面导航徽标与文案里的 `v1.0.x` / 「版本 1.0.x · …」（`index.html`、`download.html`、`features.html`、`guide.html`）；
-2. `version.json` 的 `version`（以及可选的 `notes`，会显示在软件「发现新版本」弹窗里）；
-3. `downloads/Setup_CnPatentManager.exe`（由主仓库打包直接落进来）。
+1. **`version.json`（唯一的版本来源）**：`version`、`size`（安装包字节数）、`releasedAt`、`notes`。
+   各页面的 `v1.0.x` 徽标、页脚、下载页「版本 · 大小 · 最近更新」与首页版本行，由
+   `assets/js/version.js` 在页面加载时读取它并替换 —— **不要再手工改各页面的版本号**。
+   HTML 里写的值只是 JS 失效（禁用 / 断网 / `file://` 预览）时的兜底。
+2. **`downloads/Setup_CnPatentManager.exe`**：由主仓库打包直接落进来。
+3. **内容段落（仍需手改）**：`download.html` 的「这一版（x.y.z）更新了什么」标题与清单、
+   `features.html` 的「x.y.z 新增」一节、必要时 `guide.html` 的新功能说明。
 
 软件启动时会**优先读 `version.json`**；这个文件不存在时才退回去解析 `download.html` 里的版本号。
-所以三处只改页面、忘了 `version.json`，已装用户就拿不到升级提示（反之亦然）。
+
+> `size` 按字节写（如 `12537783`），页面按 1 MB = 1048576 字节换算并保留一位小数（显示 12.0 MB）。
 
 ## 自定义域名
 

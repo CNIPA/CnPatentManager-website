@@ -1,6 +1,8 @@
 {
   "version": "1.0.5",
+  "releasedAt": "2026-10-18",
+  "size": 12537783,
   "downloadUrl": "https://cnpatentmanager.cn/downloads/Setup_CnPatentManager.exe",
   "notes": "新增通知书「答复情况」：导航下自动分未答复 / 已答复 / 无需答复，没有记录的分类不显示；缴费类通知书仍归「费用明细」。通知书列表新增答复情况与案件状态两列。",
-  "_readme": "软件启动时会优先读这个文件判断有没有新版本（见主仓库 Services/UpdateChecker.cs）。发版时必须与页面上的 v1.0.x 一起改这里的 version，并把 notes 写成本次更新说明（会显示在『发现新版本』弹窗里）。没有这个文件时程序会退回去解析 download.html 里的版本号。"
+  "_readme": "发版时改这个文件就够了：version 决定软件「发现新版本」弹窗与各页面徽标/页脚；size（字节）与 releasedAt（yyyy-MM-dd）决定下载页的「版本 · 大小 · 最近更新」行；notes 显示在更新弹窗里。页面由 assets/js/version.js 运行时读取这些字段，不要再手工改各页面的 v1.0.x。"
 }
