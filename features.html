@@ -32,7 +32,7 @@
 
 <!-- ============================ 公告条 ============================ -->
 <div class="notice-bar">
-  <span class="pill pill-soft"><span class="dot"></span>v1.0.4</span>
+  <span class="pill pill-soft"><span class="dot"></span>v1.0.5</span>
   <span><strong>内置 2024-01-20 施行的期限新规</strong>：电子送达自发文日起算，名义届满日遇非工作日顺延。</span>
   <a class="link-arrow" href="guide.html#deadline">了解规则
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -84,7 +84,7 @@
         <a class="pill" href="#parties">权利人与代理机构</a>
         <a class="pill" href="#statistics">统计与导出</a>
         <a class="pill" href="#security">数据安全</a>
-        <a class="pill" href="#whats-new">1.0.4 新增</a>
+        <a class="pill" href="#whats-new">1.0.5 新增</a>
       </div>
     </div>
   </section>
@@ -613,8 +613,39 @@
     </div>
   </section>
 
+  <!-- ============================ 1.0.5 新增 ============================ -->
+  <section class="section section-soft" id="whats-new">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">1.0.5 新增</div>
+        <h2>通知书答复到哪一步，一眼就能看到</h2>
+        <p>把"哪些通知书还没答复"从翻表格变成点菜单：分类跟着案件状态走，不需要另外维护。</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-6 6v4l-2 3h16l-2-3V9a6 6 0 0 0-6-6z"/><path d="M9.5 19a2.5 2.5 0 0 0 5 0"/></svg>
+          </div>
+          <h3>未答复 / 已答复 / 无需答复</h3>
+          <p>导航「通知书 → 答复情况」下自动分组，数量显示在菜单上；某一类一条记录都没有就不出现，
+             不会出现点开是空表的菜单。</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+          </div>
+          <h3>口径沿用旧库，不用手工标记</h3>
+          <p>有截止日期且案子仍在"待答复"阶段 = 未答复；已过答复阶段 = 已答复；没有截止日期 = 无需答复。
+             缴费类通知书（申请费、登记费、减缴审批）不在这里，仍归「费用明细」。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================ 1.0.4 新增 ============================ -->
-  <section class="section" id="whats-new">
+  <section class="section" id="whats-new-104">
     <div class="container">
       <div class="section-head reveal">
         <div class="eyebrow">1.0.4 新增</div>
@@ -732,7 +763,7 @@
     <div class="footer-bottom">
       <span>© <span data-year>2026</span> 中国专利管理大师 · CnPatentManager</span>
       <span class="grow"></span>
-      <span>v1.0.4 · Windows 桌面版</span>
+      <span>v1.0.5 · Windows 桌面版</span>
       <!-- 备案号位：本站在境外托管（GitHub Pages 美国节点），按现行规定无需工信部 ICP 备案，
            因此保持注释状态——不要显示空号。将来若迁到国内服务器 / 对象存储并完成备案，
            把下面一行取消注释，并把占位号换成实际备案号。

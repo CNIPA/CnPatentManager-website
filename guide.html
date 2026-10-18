@@ -32,7 +32,7 @@
 
 <!-- ============================ 公告条 ============================ -->
 <div class="notice-bar">
-  <span class="pill pill-soft"><span class="dot"></span>v1.0.4</span>
+  <span class="pill pill-soft"><span class="dot"></span>v1.0.5</span>
   <span><strong>内置 2024-01-20 施行的期限新规</strong>：电子送达自发文日起算，名义届满日遇非工作日顺延。</span>
   <a class="link-arrow" href="guide.html#deadline">了解规则
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -177,7 +177,8 @@
             <li><span><strong>仪表板</strong>：总专利数、应缴年费、本月到期、逾期未缴，以及年费支出趋势与未来到期分布。</span></li>
             <li><span><strong>专利</strong>：其下含「统计」（按权利人 / 按案件状态）、各权利人、状态分类
                 （已失效 / 当前有效 / 被驳回 / 审查中 / 未公开）、申请年份、授权年份。</span></li>
-            <li><span><strong>通知书</strong>：其下含「费用明细」。</span></li>
+            <li><span><strong>通知书</strong>：其下含「费用明细」与「答复情况」
+                （答复情况再分未答复 / 已答复 / 无需答复，只列有数据的分类）。</span></li>
             <li><span><strong>专利权利人</strong>、<strong>发明（设计）人</strong>、<strong>身份证号</strong>。</span></li>
             <li><span><strong>代理机构 · 代理师</strong>与<strong>代理机构管理</strong>、<strong>权利人管理</strong>。</span></li>
             <li><span><strong>缴费年度</strong>、<strong>缴费订单</strong>、<strong>收据</strong>。</span></li>
@@ -185,6 +186,13 @@
             <li><span><strong>缺少收据的缴费记录</strong>。</span></li>
             <li><span>左下角固定「<strong>年费价格设置</strong>」入口。</span></li>
           </ul>
+
+          <h3>通知书的答复情况</h3>
+          <p>「通知书 → 答复情况」下按 <strong>未答复 / 已答复 / 无需答复</strong> 自动分组：
+             有截止日期、且案子仍在"待答复"阶段（如"一通出案待答复""等…回执""驳回等复审请求"）的是未答复；
+             已过答复阶段（如"一通回案实审""专利权维持"）的是已答复；没有截止日期的是无需答复。
+             缴费类通知书（缴纳申请费、办理登记手续、收费减缴审批）不参与，仍归「费用明细」。
+             某一类一条记录都没有时，该菜单不显示。</p>
 
           <h3>表格交互</h3>
           <p>表格的操作是熟悉的数据表习惯：
@@ -367,7 +375,7 @@
     <div class="footer-bottom">
       <span>© <span data-year>2026</span> 中国专利管理大师 · CnPatentManager</span>
       <span class="grow"></span>
-      <span>v1.0.4 · Windows 桌面版</span>
+      <span>v1.0.5 · Windows 桌面版</span>
       <!-- 备案号位：本站在境外托管（GitHub Pages 美国节点），按现行规定无需工信部 ICP 备案，
            因此保持注释状态——不要显示空号。将来若迁到国内服务器 / 对象存储并完成备案，
            把下面一行取消注释，并把占位号换成实际备案号。
