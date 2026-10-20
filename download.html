@@ -88,12 +88,11 @@
         版本 1.0.5 · Setup_CnPatentManager.exe · 12.0 MB · 最近更新 2026-10-18
       </p>
       <div class="card reveal mt-24" style="text-align:left">
-        <h3 style="margin-top:0">这一版（1.0.5）更新了什么</h3>
+        <h3 style="margin-top:0">这一版（1.0.6）更新了什么</h3>
         <ul class="check-list mt-14">
-          <li><strong>通知书「答复情况」</strong>：导航「通知书」下新增子菜单，自动分 <strong>未答复 / 已答复 / 无需答复</strong>，数字直接显示在菜单上；某个分类没有记录就不显示，不会点开是空表</li>
-          <li><strong>判定不用手工维护</strong>：有截止日期且案子仍在"待答复"阶段 = 未答复；已过答复阶段 = 已答复；没有截止日期 = 无需答复（沿用旧 Access 库「待答复的案件」的口径）</li>
-          <li><strong>缴费类仍归「费用明细」</strong>：缴纳申请费、办理登记手续、收费减缴审批等通知书不进入答复情况</li>
-          <li><strong>通知书列表</strong>新增「答复情况」「案件状态」两列；答复情况的筛选页不显示这两列，避免与菜单分类重复</li>
+          <li><strong>修复通知书批量导入</strong>：一次选多个 CPC 压缩包（或多个 PDF）时，同一申请号有多份通知书不会再让整批失败</li>
+          <li>以前遇到这种情况会弹出「An error occurred while saving the entity changes…」，一份都进不了库；现在每份各自入库，后面几份还能接着更新同一案子的申请人、代理机构与案件状态</li>
+          <li>单份导入的用法与之前完全一致</li>
         </ul>
       </div>      <div class="btn-row reveal mt-24">
         <a class="pill" href="#requirements">系统要求</a>
