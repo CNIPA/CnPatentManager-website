@@ -88,11 +88,11 @@
         版本 1.0.5 · Setup_CnPatentManager.exe · 12.0 MB · 最近更新 2026-10-18
       </p>
       <div class="card reveal mt-24" style="text-align:left">
-        <h3 style="margin-top:0">这一版（1.0.6）更新了什么</h3>
+        <h3 style="margin-top:0">这一版（1.0.7）更新了什么</h3>
         <ul class="check-list mt-14">
-          <li><strong>修复通知书批量导入</strong>：一次选多个 CPC 压缩包（或多个 PDF）时，同一申请号有多份通知书不会再让整批失败</li>
-          <li>以前遇到这种情况会弹出「An error occurred while saving the entity changes…」，一份都进不了库；现在每份各自入库，后面几份还能接着更新同一案子的申请人、代理机构与案件状态</li>
-          <li>单份导入的用法与之前完全一致</li>
+          <li><strong>修复收据导入失败</strong>：交款人「统一社会信用代码」留空的收据（个人缴费的票据就是这样）以前会整批报「An error occurred while saving the entity changes…」，一张都进不了库</li>
+          <li>空白栏现在按「未填写」入库；格式不对的信用代码只记一条警告，并把原值写进备注，不再挡住整张收据</li>
+          <li><strong>一张出错不再连坐整批</strong>：收据改为逐张保存，出错的那张单独报错（直接写出是哪张票据、违反了哪个约束），其余照常入库；导入失败也会写运行日志，方便远程排查</li>
         </ul>
       </div>      <div class="btn-row reveal mt-24">
         <a class="pill" href="#requirements">系统要求</a>

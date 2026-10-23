@@ -1,8 +1,8 @@
 {
-  "version": "1.0.6",
-  "releasedAt": "2026-10-20",
-  "size": 12547814,
+  "version": "1.0.7",
+  "releasedAt": "2026-10-24",
+  "size": 12541004,
   "downloadUrl": "https://cnpatentmanager.cn/downloads/Setup_CnPatentManager.exe",
-  "notes": "修复通知书批量导入：一次选多个 CPC 压缩包（或多个 PDF）时，同一申请号有多份通知书会整批失败并提示 An error occurred while saving the entity changes；现在每份各自入库，批量导入正常。",
+  "notes": "修复收据导入失败：交款人「统一社会信用代码」留空的收据（个人缴费的票据就是这样）以前会整批报 An error occurred while saving the entity changes，一张都进不了库；现在空白按未填写入库，格式不对的只记警告。收据改为逐张保存，一张出错不再连坐整批，报错会写明是哪张票据、违反了哪个约束。",
   "_readme": "发版时改这个文件就够了：version 决定软件「发现新版本」弹窗与各页面徽标/页脚；size（字节）与 releasedAt（yyyy-MM-dd）决定下载页的「版本 · 大小 · 最近更新」行；notes 显示在更新弹窗里。页面由 assets/js/version.js 运行时读取这些字段，不要再手工改各页面的 v1.0.x。"
 }
